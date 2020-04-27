@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LibraryManager.DataStructures
 {
-    class BinaryTree
+    class BinaryTree<T>
     {
         public TreeNode root;
 
