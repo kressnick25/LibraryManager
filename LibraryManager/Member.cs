@@ -7,7 +7,7 @@ namespace LibraryManager
     /*
      * Models a library member
      */
-    class Member : WithKey
+    public class Member : WithKey
     {
         private HashSet<Movie> currentLoans; // TOTO STRUCT: SET
         public string Name { get; }
@@ -41,9 +41,17 @@ namespace LibraryManager
             }
         }
 
+        // removes a movie from the Member
         public void removeMovie(Movie movie)
         {
             currentLoans.Remove(movie);
+        }
+
+        // Returns a Movie to the library by removing from Member
+        public void returnMovie(Movie movie)
+        {
+            removeMovie(movie);
+            movie.LoanedTo = null;
         }
     }
 }

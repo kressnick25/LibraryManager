@@ -15,7 +15,7 @@ namespace LibraryManager
         public string Title { get; }
         public string Director { get; }
         public DateTime ReleaseDate { get; }
-
+        public Member LoanedTo { get; set; }
         public Movie(string title, List<string> starring, string directorName, 
                         Genre genre, Classification classification, DateTime releaseDate)
         {
@@ -30,6 +30,17 @@ namespace LibraryManager
         public string Key
         {
             get { return Title; }
+        }
+
+        public bool onLoan
+        {
+            get { return LoanedTo != null; }
+        }
+
+        public void LoanTo(Member member)
+        {
+            member.addMovie(this);
+            LoanedTo = member;
         }
     }
 
