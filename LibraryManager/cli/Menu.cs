@@ -6,9 +6,9 @@ using System.IO;
 using System.Runtime.Versioning;
 using System.Text;
 
-namespace LibraryManager.Tui
+namespace LibraryManager
 {
-    class Menu
+    public class Menu
     {
         const int HEADER_WIDTH = 40;
 
@@ -17,7 +17,7 @@ namespace LibraryManager.Tui
         private MenuItem goBack;
         public DataStructures.List<MenuItem> Selections { get; }
 
-        Menu(string menuName, MenuItem previous, string headerMessage = null)
+        public Menu(string menuName, MenuItem previous, string headerMessage = null)
         {
             this.MenuName = menuName;
             this.HeaderMessage = headerMessage;
@@ -27,6 +27,12 @@ namespace LibraryManager.Tui
         public int SelectionSize 
         { 
             get { return Selections.Length; } 
+        }
+
+        public void AddMenuItem(MenuItem menuItem)
+        {
+   
+            Selections.Add(menuItem);
         }
 
         private string menuHeader
@@ -39,7 +45,7 @@ namespace LibraryManager.Tui
             }
         }
 
-        public string toString()
+        public override string ToString()
         {
             // Welcome to the community library (optional)
             // ===============Main Menu================
@@ -54,7 +60,7 @@ namespace LibraryManager.Tui
             // ======================
             output += new string('=', HEADER_WIDTH) + "\n";
             // Please make a selection (1-5 or 0 to return to main menu)"
-            output += $"Please make a selection (1-${SelectionSize} or 0 to ${goBack.ShortText}):";
+            output += $"Please make a selection (1-${SelectionSize} or 0 to ${goBack.Text.ToLower()}):";
 
             return output;
         }

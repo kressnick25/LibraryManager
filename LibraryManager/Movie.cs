@@ -9,14 +9,15 @@ namespace LibraryManager
      */
     public class Movie : WithKey
     {
-        private List<string> starring; // TODO STRUCT: LIST
+        private DataStructures.List<string> starring; // TODO STRUCT: LIST
         private Genre genre;
         private Classification classification;
+        private int borrowedCount;
         public string Title { get; }
         public string Director { get; }
         public DateTime ReleaseDate { get; }
         public Member LoanedTo { get; set; }
-        public Movie(string title, List<string> starring, string directorName, 
+        public Movie(string title, DataStructures.List<string> starring, string directorName, 
                         Genre genre, Classification classification, DateTime releaseDate)
         {
             Title = title;
@@ -24,6 +25,7 @@ namespace LibraryManager
             this.starring = starring;
             this.genre = genre;
             this.classification = classification;
+            this.borrowedCount = 0;
             ReleaseDate = releaseDate;
         }
 
@@ -39,7 +41,7 @@ namespace LibraryManager
 
         public void LoanTo(Member member)
         {
-            member.addMovie(this);
+            member.AddMovie(this);
             LoanedTo = member;
         }
     }

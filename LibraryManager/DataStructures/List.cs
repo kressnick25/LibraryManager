@@ -10,8 +10,10 @@ namespace LibraryManager.DataStructures
 {
     /*
      * Represents a collection of registered members.
+     * Stores values as a sorted array interally and
+     * iterates using binary search.
      */
-    class List<T> : IEnumerable<T>
+    public class List<T> : IEnumerable<T>
     {
         const int DEFAULT_SIZE = 10;
 
@@ -72,6 +74,7 @@ namespace LibraryManager.DataStructures
             }
             // insert at last position
             values[actualSize++] = newValue;
+            // TODO sort list
         }
 
         // get a member by name
@@ -87,8 +90,18 @@ namespace LibraryManager.DataStructures
         {
             if (index >= actualSize || index < 0)
                 throw new IndexOutOfRangeException();
-
-            values[index] = default(T);
+            // shift all items in arrray down.
+            for (int i = index; i < actualSize; i++)
+            {
+                if (i + 1 == actualSize)
+                {
+                    values[i] = default(T);
+                }
+                else
+                {
+                    values[i] = values[i + 1];
+                }
+            }
             actualSize--;
         }
 

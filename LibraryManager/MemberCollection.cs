@@ -39,7 +39,7 @@ namespace LibraryManager
         public void Add(Member newMember)
         {
             if (indexOf(newMember.Name) != -1)
-                throw new ArgumentException($"User with name [{newMember.}]")
+                throw new KeyNotFoundException($"User with name [{newMember}] was not found");
             if (members.Length - actualSize <= 5)
             {
                 this.increaseSize();
@@ -67,9 +67,20 @@ namespace LibraryManager
             if (i == -1)
                 throw new KeyNotFoundException($"User with name [{fullName}] was not found in collection.");
             else
-                return members[this.indexOf(fullName)];
+                return members[i];
         }
 
+        public Member FindUsername(string userName)
+        {
+            for (int i = 0; i < actualSize; i++)
+            {
+                if (members[i].UserName == userName)
+                {
+                    return members[i];
+                }
+            }
+            throw new KeyNotFoundException($"User with name [{userName}] was not found in collection.");
+        }
         // index of member
         public int indexOf(string fullName)
         {
