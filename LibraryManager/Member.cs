@@ -46,7 +46,7 @@ namespace LibraryManager
             currentLoans = new DataStructures.List<Movie>();
             using (MD5 md5Hash = MD5.Create())
             {
-                this.hashedPassword = Auth.GetMd5Hash(md5Hash, password);
+                this.hashedPassword = AuthHandler.GetMd5Hash(md5Hash, password);
             }
         }
 

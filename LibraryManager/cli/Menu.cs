@@ -1,10 +1,5 @@
-﻿using LibraryManager.DataStructures;
-using Microsoft.VisualBasic.CompilerServices;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Runtime.Versioning;
-using System.Text;
+﻿using System;
+using System.ComponentModel;
 
 namespace LibraryManager
 {
@@ -13,26 +8,25 @@ namespace LibraryManager
         const int HEADER_WIDTH = 40;
 
         private string MenuName;
-        private string HeaderMessage;
         private MenuItem goBack;
-        public DataStructures.List<MenuItem> Selections { get; }
+        private DataStructures.List<MenuItem> selections;
 
-        public Menu(string menuName, MenuItem previous, string headerMessage = null)
+        public Menu(string menuName, MenuItem previous)
         {
             this.MenuName = menuName;
-            this.HeaderMessage = headerMessage;
             this.goBack = previous;
+            this.selections = new DataStructures.List<MenuItem>();
         }
 
         public int SelectionSize 
         { 
-            get { return Selections.Length; } 
+            get { return selections.Length; } 
         }
 
         public void AddMenuItem(MenuItem menuItem)
         {
    
-            Selections.Add(menuItem);
+            selections.Add(menuItem);
         }
 
         private string menuHeader
@@ -47,11 +41,10 @@ namespace LibraryManager
 
         public override string ToString()
         {
-            // Welcome to the community library (optional)
             // ===============Main Menu================
-            string output = $"{HeaderMessage} {this.menuHeader}\n";
+            string output = $"{this.menuHeader}\n";
             // 1. Staff login (repeating)
-            foreach (MenuItem item in Selections)
+            foreach (MenuItem item in selections)
             {
                 output += $"{item.Index}. {item.Text}\n";
             }
@@ -60,7 +53,7 @@ namespace LibraryManager
             // ======================
             output += new string('=', HEADER_WIDTH) + "\n";
             // Please make a selection (1-5 or 0 to return to main menu)"
-            output += $"Please make a selection (1-${SelectionSize} or 0 to ${goBack.Text.ToLower()}):";
+            output += $"Please make a selection (1-{SelectionSize} or 0 to {goBack.Text.ToLower()}):";
 
             return output;
         }
@@ -73,7 +66,7 @@ namespace LibraryManager
             while (command == -1)
             {
                 int input;
-                if (!Int32.TryParse(Console.ReadLine(), out input))
+                if (!int.TryParse(Console.ReadLine(), out input))
                 {
                     Console.WriteLine($"Please enter a valid number (0-{SelectionSize}:");
                     continue;
@@ -86,7 +79,19 @@ namespace LibraryManager
                 command = input;
             }
 
-            return Selections.Get(command).NextInterface;
+            if (command == 0)
+            {
+                return goBack.NextInterface();
+            }
+            foreach(MenuItem i in selections)
+            {
+                if (i.Index == command)
+                {
+                    return i.NextInterface();
+                }
+            }
+            throw new Exception("MenuItem not found");
+            //return selections.Get(command).NextInterface();
         }
     }
 }

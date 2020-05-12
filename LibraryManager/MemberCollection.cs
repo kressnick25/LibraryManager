@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 namespace LibraryManager
 {
     /*
@@ -27,7 +26,7 @@ namespace LibraryManager
         {
             //Array.Resize<Member>(ref members, this.Length + 10);
             Member[] resizedArray = new Member[this.Length + 10];
-            for (int i=0; i < actualSize; i++)
+            for (int i = 0; i < actualSize; i++)
             {
                 resizedArray[i] = members[i];
             }
@@ -47,7 +46,7 @@ namespace LibraryManager
             // insert at last position
             members[actualSize++] = newMember;
             // sort array using insertion sort (Levitin)
-            for (int i=1; i < actualSize; i++)
+            for (int i = 1; i < actualSize; i++)
             {
                 Member v = members[i];
                 int j = i - 1;
@@ -56,7 +55,7 @@ namespace LibraryManager
                     members[j + 1] = members[j];
                     j = j - 1;
                 }
-                members[j+1] = v;
+                members[j + 1] = v;
             }
         }
 
@@ -89,7 +88,7 @@ namespace LibraryManager
             int r = this.Length - 1;
             while (l <= r)
             {
-                int m = Math.Abs((l+r)/2);
+                int m = Math.Abs((l + r) / 2);
                 if (fullName == members[m].Name)
                     return m;
                 else if (Algorithms.StringCompare(fullName, members[m].Name) == -1)

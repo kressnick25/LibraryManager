@@ -2,12 +2,26 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Security.Cryptography;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 
 namespace LibraryManager
 {
-    class Auth
+    class AuthHandler
     {
-        public static Menu StaffLoginHandler(Menu staffMenu, Menu prevMenu)
+
+        private Menu staffMenu;
+        private Menu mainMenu;
+        private Menu memberMenu;
+
+        public AuthHandler(Menu mainMenu, Menu staffMenu, Menu memberMenu)
+        {
+            this.staffMenu = staffMenu;
+            this.mainMenu = mainMenu;
+            this.memberMenu = memberMenu;
+        }
+
+        public Menu StaffLoginHandler()
         {
             while (true)
             {
@@ -19,6 +33,7 @@ namespace LibraryManager
 
                 using (MD5 md5Hash = MD5.Create())
                 {
+                    return staffMenu; // TODO remove
                     string hashedPasswordInput = GetMd5Hash(md5Hash, password);
                     if (username == STAFF_USERNAME && VerifyMd5Hash(md5Hash, STAFF_HASHED_PASSWORD, hashedPasswordInput) == true)
                     {// credentials are correct, grant access
@@ -29,7 +44,7 @@ namespace LibraryManager
                         char input = Console.ReadKey().KeyChar;
                         if (input == '1')
                         {
-                            return prevMenu;
+                            return mainMenu;
                         }
                         continue;
                     }
@@ -39,8 +54,10 @@ namespace LibraryManager
 
         }
 
-        public static Menu MemberLoginHandler(Menu memberMenu, Menu prevMenu, MemberCollection members)
+        public Menu MemberLoginHandler()
         {
+            MemberCollection members = Program.members;
+            ref Member currentUser = ref Program.currentUser;
             while (true)
             {
                 string username, password;
@@ -61,13 +78,14 @@ namespace LibraryManager
                         char input = Console.ReadKey().KeyChar;
                         if (input == '1')
                         {
-                            return prevMenu;
+                            return mainMenu;
                         }
                         continue;
                     }
                     string hashedPasswordInput = GetMd5Hash(md5Hash, password);
                     if (username == user.UserName && VerifyMd5Hash(md5Hash, user.hashedPassword, hashedPasswordInput) == true)
                     {// credentials are correct, grant access
+                        currentUser = user;
                         return memberMenu;
                     }
                     else
@@ -76,7 +94,7 @@ namespace LibraryManager
                         char input = Console.ReadKey().KeyChar;
                         if (input == '1')
                         {
-                            return prevMenu;
+                            return mainMenu;
                         }
                         continue;
                     }

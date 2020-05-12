@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LibraryManager
 {
-    interface WithKey
+    public abstract class WithKey
     {
         public string Key;
     }

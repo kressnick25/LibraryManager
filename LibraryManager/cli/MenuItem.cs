@@ -6,16 +6,21 @@ namespace LibraryManager
 {
     public class MenuItem
     {
+        private Func<Menu> next;
         public int Index { get; }
         public string Text { get; }
-        public Menu NextInterface { get; }
 
         // TODO next might need to be a ref
-        public MenuItem(int index, string text, Menu next)
+        public MenuItem(int index, string text, Func<Menu> nextInterface)
         {
             this.Index = index;
             this.Text = text;
-            this.NextInterface = next;
+            this.next = nextInterface;
+        }
+
+        public Menu NextInterface()
+        {
+            return next();
         }
     }
 }
