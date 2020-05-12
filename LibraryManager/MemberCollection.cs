@@ -8,16 +8,14 @@ namespace LibraryManager
     class MemberCollection
     {
         private Member[] members;
-        private int actualSize;
+
         // size of list
-        public int Length
-        {
-            get { return actualSize; }
-        }
+        public int Length { get; private set; }
+
         public MemberCollection()
         {
             members = new Member[10];
-            actualSize = 0;
+            Length = 0;
         }
 
         // TODO check this works
@@ -26,7 +24,7 @@ namespace LibraryManager
         {
             //Array.Resize<Member>(ref members, this.Length + 10);
             Member[] resizedArray = new Member[this.Length + 10];
-            for (int i = 0; i < actualSize; i++)
+            for (int i = 0; i < Length; i++)
             {
                 resizedArray[i] = members[i];
             }
@@ -39,14 +37,14 @@ namespace LibraryManager
         {
             if (indexOf(newMember.Name) != -1)
                 throw new KeyNotFoundException($"User with name [{newMember}] was not found");
-            if (members.Length - actualSize <= 5)
+            if (members.Length - Length <= 5)
             {
                 this.increaseSize();
             }
             // insert at last position
-            members[actualSize++] = newMember;
+            members[Length++] = newMember;
             // sort array using insertion sort (Levitin)
-            for (int i = 1; i < actualSize; i++)
+            for (int i = 1; i < Length; i++)
             {
                 Member v = members[i];
                 int j = i - 1;
@@ -71,7 +69,7 @@ namespace LibraryManager
 
         public Member FindUsername(string userName)
         {
-            for (int i = 0; i < actualSize; i++)
+            for (int i = 0; i < Length; i++)
             {
                 if (members[i].UserName == userName)
                 {

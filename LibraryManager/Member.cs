@@ -50,6 +50,23 @@ namespace LibraryManager
             }
         }
 
+        public Member(string[] details)
+        {
+            if (details.Length < 5)
+            {
+                throw new ArgumentException("Not enough inputs provided for Member.");
+            } 
+            this.givenName = details[0];
+            this.surname = details[1];
+            Address = details[2];
+            PhoneNumber = details[3];
+            currentLoans = new DataStructures.List<Movie>();
+            using (MD5 md5Hash = MD5.Create())
+            {
+                this.hashedPassword = AuthHandler.GetMd5Hash(md5Hash, details[4]);
+            }
+        }
+
         public void AddMovie(Movie movie)
         {
             if (currentLoans.Length == 10)
