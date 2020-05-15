@@ -5,4 +5,12 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="MovieCollection.cs.old" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="MovieCollection.cs.old" />
+  </ItemGroup>
+
 </Project>

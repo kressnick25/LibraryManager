@@ -23,5 +23,13 @@ namespace LibraryManager.cli.handlers
 
             return outputs;
         }
+
+        public static string GetInputs(string inputs, string command = "\n")
+        {
+            Console.WriteLine(command);
+            Console.Write($"{inputs}:");
+            string input = Console.ReadLine();
+            return input;
+        }
     }
 }

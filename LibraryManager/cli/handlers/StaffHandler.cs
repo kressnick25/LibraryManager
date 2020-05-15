@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Xml;
 
 namespace LibraryManager 
 { 
@@ -46,6 +47,25 @@ namespace LibraryManager
 
         public Menu FindMember()
         {
+            while(true)
+            {
+                try
+                {
+                    string input = InputHandler.GetInputs("Full name", "Member phone number lookup:");
+                    if (input == "0")
+                        break;
+                    Member member = Program.members.Find(input);
+                    Console.WriteLine($"Member with name '{input}', phone number: {member.PhoneNumber}");
+                    break;
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("User with that name was not found. " +
+                                        "\nPlease try again or enter 0 to return to Menu.");
+                }
+            }
+           
+
             return staffMenu;
         }
     }

@@ -7,7 +7,7 @@ namespace LibraryManager
     /*
      * Models a movie DVD
      */
-    public class Movie : WithKey
+    public class Movie : IComparable
     {
         private DataStructures.List<string> starring; // TODO STRUCT: LIST
         private Genre genre;
@@ -43,6 +43,12 @@ namespace LibraryManager
         {
             member.AddMovie(this);
             LoanedTo = member;
+        }
+
+        public int CompareTo(object o)
+        {
+            Movie movie = (Movie)o;
+            return Algorithms.StringCompare(this.Title, movie.Title);
         }
     }
 
