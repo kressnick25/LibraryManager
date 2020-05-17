@@ -31,25 +31,22 @@ namespace LibraryManager
                 Console.Write("Password: ");
                 password = readObscuredPassword();
 
-                using (MD5 md5Hash = MD5.Create())
+                return staffMenu; // TODO remove
+                if (username == STAFF_USERNAME && password == STAFF_PASSWORD)
+                {// credentials are correct, grant access
+                    return staffMenu;
+                } else
                 {
-                    return staffMenu; // TODO remove
-                    string hashedPasswordInput = GetMd5Hash(md5Hash, password);
-                    if (username == STAFF_USERNAME && VerifyMd5Hash(md5Hash, STAFF_HASHED_PASSWORD, hashedPasswordInput) == true)
-                    {// credentials are correct, grant access
-                        return staffMenu;
-                    } else
+                    Console.WriteLine("Authentication failed.\nPress 0 to try again or 1 to return to the main menu.");
+                    char input = Console.ReadKey().KeyChar;
+                    if (input == '1')
                     {
-                        Console.WriteLine("Authentication failed.\nPress 0 to try again or 1 to return to the main menu.");
-                        char input = Console.ReadKey().KeyChar;
-                        if (input == '1')
-                        {
-                            return mainMenu;
-                        }
-                        continue;
+                        return mainMenu;
                     }
-
+                    continue;
                 }
+
+        
             }
 
         }
@@ -66,45 +63,40 @@ namespace LibraryManager
                 Console.Write("Password: ");
                 password = readObscuredPassword();
 
-                using (MD5 md5Hash = MD5.Create())
+                Member user;
+                try
                 {
-                    Member user;
-                    try
+                    user = members.FindUsername(username);
+                } catch (Exception)
+                {
+                    Console.WriteLine($"Authentication failed. Username [{username}] not found.\nPress 0 to try again or 1 to return to the main menu.");
+                    char input = Console.ReadKey().KeyChar;
+                    if (input == '1')
                     {
-                        user = members.FindUsername(username);
-                    } catch (Exception e)
+                        return mainMenu;
+                    }
+                    continue;
+                }
+                if (username == user.UserName && password == user.Password)
+                {// credentials are correct, grant access
+                    currentUser = user;
+                    return memberMenu;
+                }
+                else
+                {
+                    Console.WriteLine("Authentication failed.\nPress 0 to try again or 1 to return to the main menu.");
+                    char input = Console.ReadKey().KeyChar;
+                    if (input == '1')
                     {
-                        Console.WriteLine($"Authentication failed. Username [{username}] not found.\nPress 0 to try again or 1 to return to the main menu.");
-                        char input = Console.ReadKey().KeyChar;
-                        if (input == '1')
-                        {
-                            return mainMenu;
-                        }
-                        continue;
+                        return mainMenu;
                     }
-                    string hashedPasswordInput = GetMd5Hash(md5Hash, password);
-                    if (username == user.UserName && VerifyMd5Hash(md5Hash, user.hashedPassword, hashedPasswordInput) == true)
-                    {// credentials are correct, grant access
-                        currentUser = user;
-                        return memberMenu;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Authentication failed.\nPress 0 to try again or 1 to return to the main menu.");
-                        char input = Console.ReadKey().KeyChar;
-                        if (input == '1')
-                        {
-                            return mainMenu;
-                        }
-                        continue;
-                    }
-
+                    continue;
                 }
             }
         }
 
         private const string STAFF_USERNAME = "staff";
-        private const string STAFF_HASHED_PASSWORD = "5d8ef9f46810760a6b516997191547b6"; // hash of password defined in assignment spec
+        private const string STAFF_PASSWORD = "today123"; // hash of password defined in assignment spec
 
         // Read line but does not show characters on screen for privacy/security
         private static string readObscuredPassword()

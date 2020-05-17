@@ -13,7 +13,7 @@ namespace LibraryManager
         private DataStructures.List<Movie> currentLoans;
         private string givenName;
         private string surname;
-        public string hashedPassword { get; }
+        public string Password { get; }
         public string Address { get; }
         public string PhoneNumber { get; }
 
@@ -27,7 +27,7 @@ namespace LibraryManager
         {
             get
             {
-                return $"{givenName} {surname} ";
+                return $"{givenName} {surname}";
             }
         }
         public string UserName 
@@ -44,10 +44,7 @@ namespace LibraryManager
             Address = address;
             PhoneNumber = phoneNumber;
             currentLoans = new DataStructures.List<Movie>();
-            using (MD5 md5Hash = MD5.Create())
-            {
-                this.hashedPassword = AuthHandler.GetMd5Hash(md5Hash, password);
-            }
+            this.Password = password;
         }
 
         public Member(string[] details)
@@ -61,10 +58,7 @@ namespace LibraryManager
             Address = details[2];
             PhoneNumber = details[3];
             currentLoans = new DataStructures.List<Movie>();
-            using (MD5 md5Hash = MD5.Create())
-            {
-                this.hashedPassword = AuthHandler.GetMd5Hash(md5Hash, details[4]);
-            }
+            this.Password = details[4];
         }
 
         public void AddMovie(Movie movie)
@@ -102,9 +96,15 @@ namespace LibraryManager
         }
 
         // Returns a Movie to the library by removing from Member
+        public void ReturnMovieToLibrary(string title)
+        {
+            this.GetMovie(title).LoanedTo = null;
+            removeMovie(this.GetMovie(title));
+        }
+
         public void ReturnMovieToLibrary(Movie movie)
         {
-            removeMovie(movie);
+            this.removeMovie(movie);
             movie.LoanedTo = null;
         }
     }

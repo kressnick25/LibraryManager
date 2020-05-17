@@ -5,7 +5,7 @@ namespace LibraryManager
     /*
      * Represents a collection of registered members.
      */
-    class MemberCollection
+    public class MemberCollection
     {
         private Member[] members;
 
@@ -36,7 +36,7 @@ namespace LibraryManager
         public void Add(Member newMember)
         {
             if (indexOf(newMember.Name) != -1)
-                throw new KeyNotFoundException($"User with name [{newMember}] was not found");
+                throw new KeyNotFoundException($"User with name [{newMember}] already in collection");
             if (members.Length - Length <= 5)
             {
                 this.increaseSize();
@@ -79,7 +79,7 @@ namespace LibraryManager
             throw new KeyNotFoundException($"User with name [{userName}] was not found in collection.");
         }
         // index of member
-        public int indexOf(string fullName)
+        private int indexOf(string fullName)
         {
             // use binary search to find index of member with matching fullName (Levitin)
             int l = 0;
