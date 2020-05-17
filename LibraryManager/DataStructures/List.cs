@@ -105,6 +105,21 @@ namespace LibraryManager.DataStructures
             actualSize--;
         }
 
+        override public string ToString()
+        {
+            string output = "[";
+
+            for (int i=0; i < actualSize; i++)
+            {
+                output += values[i].ToString();
+                output += ", ";
+            }
+
+            output += "]";
+
+            return output;
+        }
+
         public T[] ToArray()
         {
             T[] trimmed = new T[actualSize];

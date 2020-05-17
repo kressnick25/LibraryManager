@@ -3,30 +3,34 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace LibraryManager
-{   
+{
     /*
      * Models a movie DVD
      */
     public class Movie : IComparable
     {
-        private DataStructures.List<string> starring; // TODO STRUCT: LIST
+        private DataStructures.List<string> starring;
         private Genre genre;
-        private Classification classification;
         private int borrowedCount;
         public string Title { get; }
         public string Director { get; }
+        public string Classification { get; }
         public DateTime ReleaseDate { get; }
         public Member LoanedTo { get; set; }
-        public Movie(string title, DataStructures.List<string> starring, string directorName, 
-                        Genre genre, Classification classification, DateTime releaseDate)
+        public Movie(string title, string directorName,
+                        Genre genre, string classification, DateTime releaseDate, params string[] starring)
         {
             Title = title;
             Director = directorName;
-            this.starring = starring;
             this.genre = genre;
-            this.classification = classification;
+            this.Classification = classification;
             this.borrowedCount = 0;
             ReleaseDate = releaseDate;
+            this.starring = new DataStructures.List<string>();
+            foreach (string actor in starring)
+            {
+                this.starring.Add(actor);
+            }
         }
 
         public string Key
@@ -50,28 +54,42 @@ namespace LibraryManager
             Movie movie = (Movie)o;
             return Algorithms.StringCompare(this.Title, movie.Title);
         }
-    }
 
+        public string Starring
+        {
+            get { return starring.ToString(); }
+        }
 
-
-    public enum Genre
-    {
-        Drama,
-        Adventure,
-        Family,
-        Action,
-        SciFi,
-        Comedy,
-        Animated,
-        Thriller,
-        Other
-    }
-
-    public enum Classification
-    {
-        General,
-        ParentalGuidance,
-        Mature,
-        MatureAccompanied
+        public string GetGenre()
+        {
+            if (this.genre == Genre.SciFi)
+            {
+                return "Science Fiction";
+            }
+            else
+            {
+                return Enum.GetName(typeof(Genre), this.genre);
+            }
+        }
+        
+        public static Dictionary<string, string> ClassificationEnum = new Dictionary<string, string>
+        {
+            {"G", "General" },
+            {"PG", "Parental Guidance" },
+            {"M", "Mature"},
+            {"MA", "Mature Accompanied" },
+        };
+        public enum Genre
+        {
+            Drama,
+            Adventure,
+            Family,
+            Action,
+            SciFi,
+            Comedy,
+            Animated,
+            Thriller,
+            Other
+        }
     }
 }

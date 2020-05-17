@@ -94,3 +94,6 @@ C:\Users\nkress\source\repos\LibraryManager\LibraryManagerTests\obj\Debug\netcor
 C:\Users\nkress\source\repos\LibraryManager\LibraryManagerTests\obj\Debug\netcoreapp3.1\LibraryManagerTests.dll
 C:\Users\nkress\source\repos\LibraryManager\LibraryManagerTests\obj\Debug\netcoreapp3.1\LibraryManagerTests.pdb
 C:\Users\nkress\source\repos\LibraryManager\LibraryManagerTests\obj\Debug\netcoreapp3.1\LibraryManagerTests.genruntimeconfig.cache
+C:\Users\nkress\source\repos\LibraryManager\LibraryManagerTests\bin\Debug\netcoreapp3.1\LibraryManager.exe
+C:\Users\nkress\source\repos\LibraryManager\LibraryManagerTests\bin\Debug\netcoreapp3.1\LibraryManager.dll
+C:\Users\nkress\source\repos\LibraryManager\LibraryManagerTests\bin\Debug\netcoreapp3.1\LibraryManager.pdb

@@ -12,7 +12,7 @@ namespace LibraryManager
             return null;
         }
 
-        public static MovieCollection library = new MovieCollection(null);
+        public static MovieCollection library = new MovieCollection();
         public static MemberCollection members = new MemberCollection();
         public static Member currentUser = null;
 

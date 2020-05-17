@@ -1225,6 +1225,16 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XPath.XmlDocument.dll": {}
         }
+      },
+      "LibraryManager/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/LibraryManager.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LibraryManager.dll": {}
+        }
       }
     }
   },
@@ -4618,10 +4628,16 @@
         "system.xml.xpath.xmldocument.4.3.0.nupkg.sha512",
         "system.xml.xpath.xmldocument.nuspec"
       ]
+    },
+    "LibraryManager/1.0.0": {
+      "type": "project",
+      "path": "../LibraryManager/LibraryManager.csproj",
+      "msbuildProject": "../LibraryManager/LibraryManager.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
+      "LibraryManager >= 1.0.0",
       "Microsoft.NET.Test.Sdk >= 16.4.0",
       "NUnit3TestAdapter >= 3.15.1",
       "nunit >= 3.12.0"
@@ -4652,7 +4668,11 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\nkress\\source\\repos\\LibraryManager\\LibraryManager\\LibraryManager.csproj": {
+              "projectPath": "C:\\Users\\nkress\\source\\repos\\LibraryManager\\LibraryManager\\LibraryManager.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
