@@ -4,7 +4,7 @@ using BSTreeClass;
 
 namespace LibraryManagerTests
 {
-    public class Tests
+    public class BSTTreeTests
     {
 		// build a binary search tree
 		IBSTree aBSTree = new BSTree();

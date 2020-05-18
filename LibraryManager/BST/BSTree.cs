@@ -4,6 +4,7 @@
 // 24/3/06
 
 using System;
+using System.Collections.Generic;
 using BSTreeInterface;
 namespace BSTreeClass
 {
@@ -53,6 +54,29 @@ namespace BSTreeClass
 		{
 			return root == null;
 		}
+
+		// Added methods
+		public IComparable Get(IComparable item)
+		{
+			return Get(item, root);
+		}
+
+		private IComparable Get(IComparable item, BTreeNode r)
+		{
+			if (r != null)
+			{
+				if (item.CompareTo(r.Item) == 0)
+					return r.Item;
+				else
+					if (item.CompareTo(r.Item) < 0)
+					return Get(item, r.LChild);
+				else
+					return Get(item, r.RChild);
+			}
+			else
+				throw new KeyNotFoundException("Item not found in tree");
+		}
+		// end added methods
 
 		public bool Search(IComparable item)
 		{
@@ -171,7 +195,7 @@ namespace BSTreeClass
 
 		public void PreOrderTraverse()
 		{
-			Console.Write("PreOrder: ");
+			//Console.Write("PreOrder: "); // ALTERED
 			PreOrderTraverse(root);
 			Console.WriteLine();
 		}
@@ -188,7 +212,7 @@ namespace BSTreeClass
 
 		public void InOrderTraverse()
 		{
-			Console.Write("InOrder: ");
+			//Console.Write("InOrder: "); // ALTERED
 			InOrderTraverse(root);
 			Console.WriteLine();
 		}
@@ -205,7 +229,7 @@ namespace BSTreeClass
 
 		public void PostOrderTraverse()
 		{
-			Console.Write("PostOrder: ");
+			//Console.Write("PostOrder: "); // ALTERED
 			PostOrderTraverse(root);
 			Console.WriteLine();
 		}

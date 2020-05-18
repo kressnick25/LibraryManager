@@ -4,7 +4,6 @@ C:\Users\nkress\source\repos\LibraryManager\LibraryManager\bin\Debug\netcoreapp3
 C:\Users\nkress\source\repos\LibraryManager\LibraryManager\bin\Debug\netcoreapp3.1\LibraryManager.runtimeconfig.dev.json
 C:\Users\nkress\source\repos\LibraryManager\LibraryManager\bin\Debug\netcoreapp3.1\LibraryManager.dll
 C:\Users\nkress\source\repos\LibraryManager\LibraryManager\bin\Debug\netcoreapp3.1\LibraryManager.pdb
-C:\Users\nkress\source\repos\LibraryManager\LibraryManager\obj\Debug\netcoreapp3.1\LibraryManager.csprojAssemblyReference.cache
 C:\Users\nkress\source\repos\LibraryManager\LibraryManager\obj\Debug\netcoreapp3.1\LibraryManager.csproj.CoreCompileInputs.cache
 C:\Users\nkress\source\repos\LibraryManager\LibraryManager\obj\Debug\netcoreapp3.1\LibraryManager.AssemblyInfoInputs.cache
 C:\Users\nkress\source\repos\LibraryManager\LibraryManager\obj\Debug\netcoreapp3.1\LibraryManager.AssemblyInfo.cs

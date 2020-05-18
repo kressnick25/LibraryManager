@@ -9,7 +9,7 @@ namespace LibraryManager
 {
     class AuthHandler
     {
-
+        private const string AUTH_FAILED_MSG = "Authentication failed.\nPress 0 to try again or 1 to return to the main menu.\n";
         private Menu staffMenu;
         private Menu mainMenu;
         private Menu memberMenu;
@@ -31,14 +31,14 @@ namespace LibraryManager
                 Console.Write("Password: ");
                 password = readObscuredPassword();
 
-                return staffMenu; // TODO remove
+                //return staffMenu; // TODO remove
                 if (username == STAFF_USERNAME && password == STAFF_PASSWORD)
                 {// credentials are correct, grant access
                     return staffMenu;
                 } else
                 {
-                    Console.WriteLine("Authentication failed.\nPress 0 to try again or 1 to return to the main menu.");
-                    char input = Console.ReadKey().KeyChar;
+                    Console.WriteLine(AUTH_FAILED_MSG);
+                    char input = Console.ReadKey(true).KeyChar;
                     if (input == '1')
                     {
                         return mainMenu;
@@ -69,8 +69,8 @@ namespace LibraryManager
                     user = members.FindUsername(username);
                 } catch (Exception)
                 {
-                    Console.WriteLine($"Authentication failed. Username [{username}] not found.\nPress 0 to try again or 1 to return to the main menu.");
-                    char input = Console.ReadKey().KeyChar;
+                    Console.WriteLine($"Authentication failed. Username [{username}] not found.\nPress 0 to try again or 1 to return to the main menu.\n");
+                    char input = Console.ReadKey(true).KeyChar;
                     if (input == '1')
                     {
                         return mainMenu;
@@ -84,8 +84,8 @@ namespace LibraryManager
                 }
                 else
                 {
-                    Console.WriteLine("Authentication failed.\nPress 0 to try again or 1 to return to the main menu.");
-                    char input = Console.ReadKey().KeyChar;
+                    Console.WriteLine(AUTH_FAILED_MSG);
+                    char input = Console.ReadKey(true).KeyChar;
                     if (input == '1')
                     {
                         return mainMenu;

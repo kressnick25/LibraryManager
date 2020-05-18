@@ -107,15 +107,13 @@ namespace LibraryManager.DataStructures
 
         override public string ToString()
         {
-            string output = "[";
+            string output = "";
 
             for (int i=0; i < actualSize; i++)
             {
                 output += values[i].ToString();
                 output += ", ";
             }
-
-            output += "]";
 
             return output;
         }

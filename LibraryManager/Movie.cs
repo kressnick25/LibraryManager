@@ -33,6 +33,11 @@ namespace LibraryManager
             }
         }
 
+        public Movie(string title)
+        {
+            this.Title = title;
+        }
+
         public string Key
         {
             get { return Title; }
@@ -71,7 +76,12 @@ namespace LibraryManager
                 return Enum.GetName(typeof(Genre), this.genre);
             }
         }
-        
+
+        public override string ToString()
+        {
+            return $"{Title} ({ReleaseDate.Year}) DIRECTED BY: {Director}, STARRING: {Starring} {GetGenre()} [{Classification}]\n";
+        }
+
         public static Dictionary<string, string> ClassificationEnum = new Dictionary<string, string>
         {
             {"G", "General" },

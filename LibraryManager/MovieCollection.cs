@@ -3,12 +3,13 @@ using BSTreeClass;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Security.Cryptography;
 
 namespace LibraryManager
 {
-    class MovieCollection
+    public class MovieCollection
     {
-        IBSTree collection;
+        BSTree collection;
 
         public MovieCollection()
         {
@@ -18,6 +19,11 @@ namespace LibraryManager
         public bool IsEmpty()
         {
             return collection.IsEmpty();
+        }
+
+        public Movie Get(Movie movie)
+        {
+            return (Movie)collection.Get(movie);
         }
 
         public bool Search(Movie movie)
@@ -38,6 +44,18 @@ namespace LibraryManager
         public void Clear()
         {
             collection.Clear();
+        }
+
+        public void PrintMovies(bool descending)
+        {
+            if (descending)
+            {
+                collection.InOrderTraverse();
+            }
+            else
+            {
+                collection.PostOrderTraverse();
+            }
         }
     }
 }

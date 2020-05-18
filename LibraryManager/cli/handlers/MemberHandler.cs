@@ -15,7 +15,7 @@ namespace LibraryManager
 
         public Menu DisplayAllMovies()
         {
-            throw new NotImplementedException();
+            Program.library.PrintMovies(true);
             return memberMenu;
         }
 

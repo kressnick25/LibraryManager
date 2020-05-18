@@ -42,7 +42,7 @@ namespace LibraryManager
         public override string ToString()
         {
             // ===============Main Menu================
-            string output = $"{this.menuHeader}\n";
+            string output = $"\n{this.menuHeader}\n";
             // 1. Staff login (repeating)
             foreach (MenuItem item in selections)
             {
