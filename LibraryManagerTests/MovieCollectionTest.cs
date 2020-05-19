@@ -22,7 +22,7 @@ namespace LibraryManagerTests
                 (
                     "Star Wars",
                     "George Lucas",
-                    Movie.Genre.SciFi,
+                    "Science Fiction",
                     Movie.ClassificationEnum["PG"],
                     new DateTime(1977, 10, 27),
                     new string[] { "Mark Hamill", "Carrie Fischer", "Harrison Ford" }
@@ -32,7 +32,7 @@ namespace LibraryManagerTests
                 (
                     "Forrest Gump",
                     "Robert Zemeckis",
-                    Movie.Genre.Drama,
+                    "Drama",
                     Movie.ClassificationEnum["PG"],
                     new DateTime(1994, 11, 17),
                     new string[] { "Tom Hanks", "Robin Wright", "Sally Field" }
@@ -44,16 +44,16 @@ namespace LibraryManagerTests
         {
             Assert.DoesNotThrow(() =>
             {
-                collection.Insert(mov1);
-                collection.Insert(mov2);
+                collection.Add(mov1);
+                collection.Add(mov2);
             });
         }
 
         [Test]
         public void Search()
         {
-            collection.Insert(mov1);
-            collection.Insert(mov2);
+            collection.Add(mov1);
+            collection.Add(mov2);
             Assert.IsTrue(collection.Search(new Movie("Star Wars")));
             Assert.IsTrue(collection.Search(new Movie("Forrest Gump")));
         }
@@ -61,8 +61,8 @@ namespace LibraryManagerTests
         [Test]
         public void Get()
         {
-            collection.Insert(mov1);
-            collection.Insert(mov2);
+            collection.Add(mov1);
+            collection.Add(mov2);
             Assert.AreEqual(mov1, collection.Get(new Movie("Star Wars")));
             Assert.AreEqual(mov2, collection.Get(new Movie("Forrest Gump")));
         }
@@ -72,9 +72,9 @@ namespace LibraryManagerTests
         {
             // Add to collection
             Assert.IsFalse(collection.Search(mov1));
-            collection.Insert(mov1);
+            collection.Add(mov1);
             Assert.IsFalse(collection.Search(mov2));
-            collection.Insert(mov2);
+            collection.Add(mov2);
 
             // Remove from collection
             collection.Delete(mov1);
@@ -86,8 +86,8 @@ namespace LibraryManagerTests
         [Test]
         public void Print()
         {
-            collection.Insert(mov1);
-            collection.Insert(mov2);
+            collection.Add(mov1);
+            collection.Add(mov2);
             Assert.DoesNotThrow(() =>
             {
                 collection.PrintMovies(true);

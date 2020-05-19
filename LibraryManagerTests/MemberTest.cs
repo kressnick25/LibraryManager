@@ -26,7 +26,7 @@ namespace LibraryManagerTests
                 (
                     "Pulp Fiction", 
                     "Quinten Tarantino", 
-                    Movie.Genre.Other, 
+                    "Other", 
                     new string(Movie.ClassificationEnum["MA"]), 
                     new System.DateTime(1994, 06, 09),
                     new string[] {"John Trevolta", "Samuel L. Jackson", "Uma Thurman", "Bruce Willis"}

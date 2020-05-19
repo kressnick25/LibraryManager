@@ -22,7 +22,7 @@ namespace LibraryManagerTests
                 (
                     "Star Wars",
                     "George Lucas",
-                    Movie.Genre.SciFi,
+                    "Science Fiction",
                     Movie.ClassificationEnum["PG"],
                     new DateTime(2019, 12, 19),
                     new string[] { "Mark Hamill", "Carrie Fischer", "Harrison Ford" }
@@ -45,16 +45,16 @@ namespace LibraryManagerTests
             Assert.AreEqual("George Lucas", mov.Director);
             Assert.AreEqual(new DateTime(2019, 12, 19), mov.ReleaseDate);
             Assert.AreEqual("Mark Hamill, Carrie Fischer, Harrison Ford, ", mov.Starring);
-            Assert.AreEqual("Science Fiction", mov.GetGenre());
+            Assert.AreEqual("Science Fiction", mov.Genre);
         }
 
         [Test]
         public void LoanTo()
         {
-            Assert.False(mov.onLoan);
+            Assert.False(mov.isOnLoan);
             mov.LoanTo(m1);
             Assert.AreEqual(mov.LoanedTo, m1);
-            Assert.True(mov.onLoan);
+            Assert.True(mov.isOnLoan);
         }
 
         [Test]

@@ -31,7 +31,7 @@ namespace LibraryManager
             return collection.Search(movie);
         }
 
-        public void Insert(Movie movie)
+        public void Add(Movie movie)
         {
             collection.Insert(movie);
         }

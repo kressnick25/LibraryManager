@@ -10,3 +10,4 @@ C:\Users\nkress\source\repos\LibraryManager\LibraryManager\obj\Debug\netcoreapp3
 C:\Users\nkress\source\repos\LibraryManager\LibraryManager\obj\Debug\netcoreapp3.1\LibraryManager.dll
 C:\Users\nkress\source\repos\LibraryManager\LibraryManager\obj\Debug\netcoreapp3.1\LibraryManager.pdb
 C:\Users\nkress\source\repos\LibraryManager\LibraryManager\obj\Debug\netcoreapp3.1\LibraryManager.genruntimeconfig.cache
+C:\Users\nkress\source\repos\LibraryManager\LibraryManager\obj\Debug\netcoreapp3.1\LibraryManager.csprojAssemblyReference.cache

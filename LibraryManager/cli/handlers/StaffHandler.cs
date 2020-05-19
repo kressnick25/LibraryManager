@@ -1,6 +1,8 @@
 ﻿using LibraryManager.cli.handlers;
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Xml;
 
@@ -16,11 +18,51 @@ namespace LibraryManager
 
         public Menu RegisterMovie()
         {
+            while (true)
+            {
+                // build string for genre options
+                string genreString = "Genre:\n" + Genre.SelectionList();
+
+                string[] inputs =
+                    InputHandler.GetInputs(new string[] { "Title", "Year (YYYY-MM-DD)", "Director", "Classification ['G', 'PG', 'M', 'MA']", genreString, "Starring [seperated by a comma]"});
+                DateTime releaseDate;
+                string[] starring;
+                try
+                {
+                    DateTime.TryParse(inputs[1], out releaseDate);
+                } catch (Exception)
+                {
+                    Console.WriteLine("Invalid Date format entered. Please try again.");
+                    continue;
+                }
+                try
+                {
+                     starring = inputs[5].Split(',');
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Invalid starring format. Please try again.");
+                    continue;
+                }
+                try
+                {
+                    Movie newMovie = new Movie(inputs[0], inputs[2], inputs[4], inputs[3], releaseDate, starring);
+                    Program.library.Add(newMovie);
+                }
+                catch (Exception)
+                {
+                    Console.Write("Failed to add new movie. Please try again.");
+                }
+
+                break;
+            }
+
             return staffMenu;
         }
 
         public Menu UnRegisterMovie()
         {
+            throw new NotImplementedException();
             return staffMenu;
         }
 

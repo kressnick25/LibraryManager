@@ -10,19 +10,20 @@ namespace LibraryManager
     public class Movie : IComparable
     {
         private DataStructures.List<string> starring;
-        private Genre genre;
         private int borrowedCount;
         public string Title { get; }
         public string Director { get; }
         public string Classification { get; }
         public DateTime ReleaseDate { get; }
         public Member LoanedTo { get; set; }
+        public string Genre { get; }
+
         public Movie(string title, string directorName,
-                        Genre genre, string classification, DateTime releaseDate, params string[] starring)
+                        string genre, string classification, DateTime releaseDate, params string[] starring)
         {
             Title = title;
             Director = directorName;
-            this.genre = genre;
+            this.Genre = genre;
             this.Classification = classification;
             this.borrowedCount = 0;
             ReleaseDate = releaseDate;
@@ -43,7 +44,7 @@ namespace LibraryManager
             get { return Title; }
         }
 
-        public bool onLoan
+        public bool isOnLoan
         {
             get { return LoanedTo != null; }
         }
@@ -65,21 +66,9 @@ namespace LibraryManager
             get { return starring.ToString(); }
         }
 
-        public string GetGenre()
-        {
-            if (this.genre == Genre.SciFi)
-            {
-                return "Science Fiction";
-            }
-            else
-            {
-                return Enum.GetName(typeof(Genre), this.genre);
-            }
-        }
-
         public override string ToString()
         {
-            return $"{Title} ({ReleaseDate.Year}) DIRECTED BY: {Director}, STARRING: {Starring} {GetGenre()} [{Classification}]\n";
+            return $"{Title} ({ReleaseDate.Year}) DIRECTED BY: {Director}, STARRING: {Starring} {Genre} [{Classification}]\n";
         }
 
         public static Dictionary<string, string> ClassificationEnum = new Dictionary<string, string>
@@ -89,17 +78,24 @@ namespace LibraryManager
             {"M", "Mature"},
             {"MA", "Mature Accompanied" },
         };
-        public enum Genre
+    }
+
+    public class Genre
+    {
+        public static string[] genres = new string[] { "Action", "Adventure", "Animated", "Comedy", "Drama", "Family", "Other", "Science Fiction", "Thriller"};
+
+        public static string SelectionList()
         {
-            Drama,
-            Adventure,
-            Family,
-            Action,
-            SciFi,
-            Comedy,
-            Animated,
-            Thriller,
-            Other
+            string output = "";
+            for (int i = 0; i < genres.Length; i++)
+            {
+                output += i.ToString();
+                output += ": ";
+                output += genres[i];
+                output += "\n";
+            }
+
+            return output;
         }
     }
 }
