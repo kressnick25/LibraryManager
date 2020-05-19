@@ -86,8 +86,8 @@ namespace LibraryManager
                     Program.library.Delete(new Movie(titleInput));
                 } catch(Exception)
                 {
-                    Console.WriteLine($"Failed to delete movie [{titleInput}]. Please 0 to try again on enter 0 to return to Staff Menu.");
-                    if (Console.ReadKey(true).KeyChar == '0')
+                    Console.WriteLine($"Failed to delete movie [{titleInput}]. Please 0 to try again on enter 1 to return to Staff Menu.");
+                    if (Console.ReadKey(true).KeyChar == '1')
                         break;
                 }
                 break;
