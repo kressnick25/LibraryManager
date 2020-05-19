@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Security.Cryptography;
 using BSTreeClass;
+using System.Diagnostics.CodeAnalysis;
 
 namespace LibraryManager
 {
@@ -106,6 +107,11 @@ namespace LibraryManager
         {
             this.removeMovie(movie);
             movie.LoanedTo = null;
+        }
+
+        public void PrintLoans()
+        {
+            currentLoans.PrintMovies(true);
         }
     }
 }

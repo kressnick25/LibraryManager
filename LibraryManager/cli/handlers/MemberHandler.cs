@@ -63,13 +63,15 @@ namespace LibraryManager
         }
 
         public Menu ListOwnBorrowed()
-        {   
-            
+        {
+            Console.WriteLine($"ALL BORROWED ITEMS FOR USER {Program.currentUser.UserName}");
+            Program.currentUser.PrintLoans();
             return memberMenu;
         }
 
         public Menu ListMostPopular()
-        {
+        {   
+
             return memberMenu;
         }
 
