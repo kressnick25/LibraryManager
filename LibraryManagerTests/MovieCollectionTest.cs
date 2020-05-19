@@ -93,5 +93,13 @@ namespace LibraryManagerTests
                 collection.PrintMovies(true);
             });
         }
+
+        [Test]
+        public void Count()
+        {
+            collection.Add(mov1);
+            collection.Add(mov2);
+            Assert.AreEqual(2, collection.Count());
+        }
     }
 }

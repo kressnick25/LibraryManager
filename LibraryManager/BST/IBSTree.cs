@@ -47,5 +47,10 @@ namespace BSTreeInterface
 		// post: all the nodes in the binary tree are removed and the binary tree becomes empty
 		void Clear();
 
+		// ALTERED
+		// pre: true
+		// post: number of nodes in tree currently
+		int Count();
+
 	}
 }

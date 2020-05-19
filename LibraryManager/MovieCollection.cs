@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Security.Cryptography;
+using System.Threading;
 
 namespace LibraryManager
 {
@@ -56,6 +57,11 @@ namespace LibraryManager
             {
                 collection.PostOrderTraverse();
             }
+        }
+
+        public int Count()
+        {
+            return collection.Count();
         }
     }
 }

@@ -248,6 +248,25 @@ namespace BSTreeClass
 		{
 			root = null;
 		}
+
+		// ALTERED. Added methods
+		public int Count()
+		{
+			int count = 0;
+			if (root != null)
+				count = Count(this.root);
+			return count;
+		}
+
+		private int Count(BTreeNode node)
+		{
+			int count = 1;
+			if (node.LChild != null)
+				count += Count(node.LChild);
+			if (node.RChild != null)
+				count += Count(node.RChild);
+			return count;
+		}
 	}
 }
 

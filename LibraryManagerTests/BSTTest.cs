@@ -87,6 +87,10 @@ namespace LibraryManagerTests
 			
 		}
 
-		
+		[Test]
+		public void Count()
+		{
+			Assert.AreEqual(aBSTree.Count(), 6);
+		}
     }
 }
