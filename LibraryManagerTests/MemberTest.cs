@@ -55,7 +55,7 @@ namespace LibraryManagerTests
         {
             member.AddMovie(movie);
             member.ReturnMovieToLibrary("Pulp Fiction");
-            Assert.IsNull(member.GetMovie("Pulp Fiction"));
+            Assert.Throws<KeyNotFoundException>(() => member.GetMovie("Pulp Fiction"));
         }
     }
 }
