@@ -24,9 +24,20 @@ namespace LibraryManager
                 string genreString = "Genre:\n" + Genre.SelectionList();
 
                 string[] inputs =
-                    InputHandler.GetInputs(new string[] { "Title", "Year (YYYY-MM-DD)", "Director", "Classification ['G', 'PG', 'M', 'MA']", genreString, "Starring [seperated by a comma]"});
+                    InputHandler.GetInputs(
+                        new string[] { 
+                            "Title", 
+                            "Year (YYYY-MM-DD)", 
+                            "Director", 
+                            "Classification ['G', 'PG', 'M', 'MA']", 
+                            genreString, 
+                            "Starring [seperated by a comma]"
+                        },
+                        "REGISTER MOVIE\n"
+                        );
                 DateTime releaseDate;
                 string[] starring;
+                // Parse dateinput to DateTime
                 try
                 {
                     DateTime.TryParse(inputs[1], out releaseDate);
@@ -35,6 +46,7 @@ namespace LibraryManager
                     Console.WriteLine("Invalid Date format entered. Please try again.");
                     continue;
                 }
+                // Parse starring input to seperate strings
                 try
                 {
                      starring = inputs[5].Split(',');
@@ -44,6 +56,7 @@ namespace LibraryManager
                     Console.WriteLine("Invalid starring format. Please try again.");
                     continue;
                 }
+                // Create new Movie object and add to library
                 try
                 {
                     Movie newMovie = new Movie(inputs[0], inputs[2], inputs[4], inputs[3], releaseDate, starring);
@@ -54,6 +67,7 @@ namespace LibraryManager
                     Console.Write("Failed to add new movie. Please try again.");
                 }
 
+                // TODO handle voluntary return to main
                 break;
             }
 
@@ -62,17 +76,32 @@ namespace LibraryManager
 
         public Menu UnRegisterMovie()
         {
-            throw new NotImplementedException();
+            while (true)
+            {
+                string titleInput =
+                    InputHandler.GetInputs("Movie Title", "REMOVE MOVIE\n");
+     
+                try
+                {
+                    Program.library.Delete(new Movie(titleInput));
+                } catch(Exception)
+                {
+                    Console.WriteLine($"Failed to delete movie [{titleInput}]. Please 0 to try again on enter 0 to return to Staff Menu.");
+                    if (Console.ReadKey(true).KeyChar == '0')
+                        break;
+                }
+                break;
+            }
             return staffMenu;
         }
 
         public Menu RegisterMember()
         {
-            //public Member(string givenName, string surname, string address, string phoneNumber, string password)
             while (true) {
                 string[] inputs = 
                     InputHandler.GetInputs(new string[] { "Firstname", "Lastname", "Address", "PhoneNumber", "Password" },
-                                           "Please enter new Member details: ");
+                                           "REGISTER MEMBER\n");
+                // Create new Member object and add to memberCollection
                 try
                 {
                     Member newMember = new Member(inputs);
@@ -93,7 +122,7 @@ namespace LibraryManager
             {
                 try
                 {
-                    string input = InputHandler.GetInputs("Full name", "Member phone number lookup:");
+                    string input = InputHandler.GetInputs("Full name", "MEMBER PHONE NUMBER LOOKUP\n");
                     if (input == "0")
                         break;
                     Member member = Program.members.Find(input);
