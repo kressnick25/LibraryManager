@@ -1,6 +1,7 @@
 ﻿using LibraryManager.cli.handlers;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -99,8 +100,20 @@ namespace LibraryManager
         {
             while (true) {
                 string[] inputs = 
-                    InputHandler.GetInputs(new string[] { "Firstname", "Lastname", "Address", "PhoneNumber", "Password" },
+                    InputHandler.GetInputs(new string[] { "Firstname", "Lastname", "Address", "PhoneNumber", "Password [4 digits]" },
                                            "REGISTER MEMBER\n");
+                // verify password format
+                if (inputs[4].Length != 4)
+                {
+                    Console.WriteLine("Incorrect password length. Please try again.");
+                    continue;
+                }
+                // Check all chars in password are numbers
+                if (!inputs[4].All(Char.IsDigit))
+                {
+                    Console.WriteLine("Password must contain only digits. Please try again.");
+                    continue;
+                }
                 // Create new Member object and add to memberCollection
                 try
                 {
