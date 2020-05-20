@@ -91,9 +91,9 @@ namespace LibraryManager
         
 
         // removes a movie from the Member
-        public void removeMovie(Movie movie)
+        public void removeMovie(string title)
         {
-            currentLoans.Delete(movie.Title);
+            currentLoans.Delete(title);
         }
 
         // Returns a Movie to the library by removing from Member
@@ -101,13 +101,14 @@ namespace LibraryManager
         {
             Program.library.Get(title).LoanedTo = null;
             Program.library.Get(title).CoppiesAvailable++;
-            removeMovie(this.GetMovie(title));
+            removeMovie(title);
         }
 
         public void ReturnMovieToLibrary(Movie movie)
         {
-            this.removeMovie(movie);
-            movie.LoanedTo = null;
+            Program.library.Get(movie.Title).LoanedTo = null;
+            Program.library.Get(movie.Title).CoppiesAvailable++;
+            removeMovie(movie.Title);
         }
 
         public void PrintLoans()

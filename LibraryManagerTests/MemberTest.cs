@@ -46,7 +46,7 @@ namespace LibraryManagerTests
         [Test]
         public void AddMovie()
         {
-            member.AddMovie(movie);
+            movie.LoanTo(member);
             Assert.AreEqual(movie, member.GetMovie("Pulp Fiction"));
         }
 
@@ -79,8 +79,8 @@ namespace LibraryManagerTests
         [Test]
         public void RemoveMovie()
         {
-            member.AddMovie(movie);
-            member.ReturnMovieToLibrary("Pulp Fiction");
+            movie.LoanTo(member);
+            member.removeMovie(movie.Title);
             Assert.Throws<KeyNotFoundException>(() => member.GetMovie("Pulp Fiction"));
         }
     }
