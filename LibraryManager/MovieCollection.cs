@@ -199,6 +199,24 @@ namespace LibraryManager
                 count += Count(node.Right);
             return count;
         }
+
+        public Movie[] ToArray()
+        {
+            DataStructures.List<Movie> L = new DataStructures.List<Movie>();
+            ArrayTraverse(root, ref L);
+
+            return L.ToArray();
+        }
+
+        private void ArrayTraverse(TreeNode n, ref DataStructures.List<Movie> list)
+        {
+            if (n != null)
+            {
+                ArrayTraverse(n.Left, ref list);
+                list.Add(n.Data);
+                ArrayTraverse(n.Right, ref list);
+            }
+        }
     }
 
     public class TreeNode

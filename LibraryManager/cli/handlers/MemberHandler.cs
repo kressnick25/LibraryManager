@@ -70,7 +70,22 @@ namespace LibraryManager
         }
 
         public Menu ListMostPopular()
-        {   
+        {
+            int libSize = Program.library.Count();
+            if (Program.library.Count() == 0)
+            {
+                Console.WriteLine("No movies currently in Library.");
+            }
+            else
+            {
+                Movie[] m = Program.library.ToArray();
+                Algorithms.QuickSort(m, 0, m.Length - 1);
+
+                for (int i = 0; i < 10; i++)
+                {
+                    Console.WriteLine($"{i}: {m[i].Title} borrowed {m[i].LoanedCount} times");
+                }
+            }
 
             return memberMenu;
         }

@@ -35,5 +35,56 @@ namespace LibraryManager
                 return 1;
             return 0;
         }
+
+        public static void QuickSort(Movie[] movies, int leftIndex, int rightIndex)
+        {
+            if (leftIndex < rightIndex)
+            {
+                int pivot = Partition(movies, leftIndex, rightIndex);
+
+                if (pivot > 1)
+                {
+                    QuickSort(movies, leftIndex, pivot - 1);
+                }
+                if (pivot + 1 < rightIndex)
+                {
+                    QuickSort(movies, pivot + 1, rightIndex);
+                }
+            }
+        }
+
+        private static int Partition(Movie[] movies, int leftIndex, int rightIndex)
+        {
+            int pivot = movies[leftIndex + (rightIndex - leftIndex) / 2].LoanedCount;
+            while (true)
+            {
+
+                while (movies[leftIndex].LoanedCount > pivot)
+                {
+                    leftIndex++;
+                }
+
+                while (movies[rightIndex].LoanedCount < pivot)
+                {
+                    rightIndex--;
+                }
+
+                if (leftIndex < rightIndex)
+                {
+                    if (Equals(movies[leftIndex].LoanedCount, movies[rightIndex].LoanedCount))
+                    {
+                        return rightIndex;
+                    }
+                    Movie temp = movies[leftIndex];
+                    movies[leftIndex] = movies[rightIndex];
+                    movies[rightIndex] = temp;
+                }
+                else
+                {
+                    return rightIndex;
+                }
+            }
+        }
     }
+
 }
