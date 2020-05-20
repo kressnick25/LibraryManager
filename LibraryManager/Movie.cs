@@ -10,28 +10,28 @@ namespace LibraryManager
     public class Movie : IComparable
     {
         private DataStructures.List<string> starring;
-        private int borrowedCount;
         public string Title { get; }
         public string Director { get; }
         public string Classification { get; }
         public DateTime ReleaseDate { get; }
         public Member LoanedTo { get; set; }
         public string Genre { get; }
+        public int LoanedCount { get; }
 
         public Movie(string title, string directorName,
                         string genre, string classification, DateTime releaseDate, params string[] starring)
         {
             Title = title;
             Director = directorName;
-            this.Genre = genre;
-            this.Classification = classification;
-            this.borrowedCount = 0;
+            Genre = genre;
+            Classification = classification;
             ReleaseDate = releaseDate;
             this.starring = new DataStructures.List<string>();
             foreach (string actor in starring)
             {
                 this.starring.Add(actor);
             }
+            LoanedCount = 0;
         }
 
         public Movie(string title)
@@ -44,7 +44,7 @@ namespace LibraryManager
             get { return Title; }
         }
 
-        public bool isOnLoan
+        public bool IsOnLoan
         {
             get { return LoanedTo != null; }
         }
