@@ -54,8 +54,8 @@ namespace LibraryManagerTests
         {
             collection.Add(mov1);
             collection.Add(mov2);
-            Assert.IsTrue(collection.Search(new Movie("Star Wars")));
-            Assert.IsTrue(collection.Search(new Movie("Forrest Gump")));
+            Assert.IsTrue(collection.Exists("Star Wars"));
+            Assert.IsTrue(collection.Exists("Forrest Gump"));
         }
 
         [Test]
@@ -63,24 +63,24 @@ namespace LibraryManagerTests
         {
             collection.Add(mov1);
             collection.Add(mov2);
-            Assert.AreEqual(mov1, collection.Get(new Movie("Star Wars")));
-            Assert.AreEqual(mov2, collection.Get(new Movie("Forrest Gump")));
+            Assert.AreEqual(mov1, collection.Get("Star Wars"));
+            Assert.AreEqual(mov2, collection.Get("Forrest Gump"));
         }
 
         [Test]
         public void Delete()
         {
             // Add to collection
-            Assert.IsFalse(collection.Search(mov1));
+            Assert.IsFalse(collection.Exists(mov1.Title));
             collection.Add(mov1);
-            Assert.IsFalse(collection.Search(mov2));
+            Assert.IsFalse(collection.Exists(mov2.Title));
             collection.Add(mov2);
 
             // Remove from collection
-            collection.Delete(mov1);
-            Assert.IsFalse(collection.Search(mov1));
-            collection.Delete(mov2);
-            Assert.IsFalse(collection.Search(mov2));
+            collection.Delete(mov1.Title);
+            Assert.IsFalse(collection.Exists(mov1.Title));
+            collection.Delete(mov2.Title);
+            Assert.IsFalse(collection.Exists(mov2.Title));
         }
 
         [Test]

@@ -51,6 +51,32 @@ namespace LibraryManagerTests
         }
 
         [Test]
+        public void LoanMovie()
+        {
+            Member m2 = new Member(d["givenName"], "newTester", d["address"], d["phoneNumber"], d["password"]);
+            MovieCollection c = new MovieCollection();
+            c.Add(movie);
+            // second copy of same movie
+            c.Add(new Movie
+                (
+                    "Pulp Fiction",
+                    "ered",
+                    "Other",
+                    new string(Movie.ClassificationEnum["MA"]),
+                    new System.DateTime(1994, 06, 09),
+                    new string[] { "John Trevolta", "Samuel L. Jackson", "Uma Thurman", "Bruce Willis" }
+                ));
+
+            c.Get("Pulp Fiction").LoanTo(member);
+            c.Get("Pulp Fiction").LoanTo(m2);
+            Assert.DoesNotThrow(() => member.GetMovie("Pulp Fiction"));
+            Assert.DoesNotThrow(() => m2.GetMovie("Pulp Fiction"));
+            Assert.AreEqual(member.GetMovie("Pulp Fiction").Director, "Quinten Tarantino");
+            Assert.AreEqual(member.GetMovie("Pulp Fiction").Director, "Quinten Tarantino");
+
+        }
+
+        [Test]
         public void RemoveMovie()
         {
             member.AddMovie(movie);

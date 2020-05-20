@@ -28,7 +28,7 @@ namespace LibraryManager
 
                 try
                 {
-                    Program.currentUser.AddMovie(Program.library.Get(new Movie(titleInput)));
+                    Program.library.Get(titleInput).LoanTo(Program.currentUser);
                 }
                 catch (Exception)
                 {

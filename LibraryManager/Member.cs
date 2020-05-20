@@ -86,20 +86,21 @@ namespace LibraryManager
 
         public Movie GetMovie(string title)
         {
-            return currentLoans.Get(new Movie(title));
+            return currentLoans.Get(title);
         }
         
 
         // removes a movie from the Member
         public void removeMovie(Movie movie)
         {
-            currentLoans.Delete(movie);
+            currentLoans.Delete(movie.Title);
         }
 
         // Returns a Movie to the library by removing from Member
         public void ReturnMovieToLibrary(string title)
         {
-            this.GetMovie(title).LoanedTo = null;
+            Program.library.Get(title).LoanedTo = null;
+            Program.library.Get(title).CoppiesAvailable++;
             removeMovie(this.GetMovie(title));
         }
 

@@ -16,7 +16,8 @@ namespace LibraryManager
         public DateTime ReleaseDate { get; }
         public Member LoanedTo { get; set; }
         public string Genre { get; }
-        public int LoanedCount { get; }
+        public int LoanedCount { get; set; }
+        public int CoppiesAvailable { get; set; }
 
         public Movie(string title, string directorName,
                         string genre, string classification, DateTime releaseDate, params string[] starring)
@@ -32,6 +33,7 @@ namespace LibraryManager
                 this.starring.Add(actor);
             }
             LoanedCount = 0;
+            CoppiesAvailable = 1;
         }
 
         public Movie(string title)
@@ -51,8 +53,14 @@ namespace LibraryManager
 
         public void LoanTo(Member member)
         {
+            if (CoppiesAvailable <= 0)
+            {
+                throw new Exception("All copies of this film are already on loan.");
+            }
             member.AddMovie(this);
             LoanedTo = member;
+            LoanedCount++;
+            CoppiesAvailable--;
         }
 
         public int CompareTo(object o)
@@ -82,16 +90,16 @@ namespace LibraryManager
 
     public class Genre
     {
-        public static string[] genres = new string[] { "Action", "Adventure", "Animated", "Comedy", "Drama", "Family", "Other", "Science Fiction", "Thriller"};
+        public static string[] List = new string[] { "Action", "Adventure", "Animated", "Comedy", "Drama", "Family", "Other", "Science Fiction", "Thriller"};
 
         public static string SelectionList()
         {
             string output = "";
-            for (int i = 0; i < genres.Length; i++)
+            for (int i = 0; i < List.Length; i++)
             {
                 output += i.ToString();
                 output += ": ";
-                output += genres[i];
+                output += List[i];
                 output += "\n";
             }
 

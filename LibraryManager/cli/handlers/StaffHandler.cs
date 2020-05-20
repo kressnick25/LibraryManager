@@ -60,7 +60,7 @@ namespace LibraryManager
                 // Create new Movie object and add to library
                 try
                 {
-                    Movie newMovie = new Movie(inputs[0], inputs[2], inputs[4], inputs[3], releaseDate, starring);
+                    Movie newMovie = new Movie(inputs[0], inputs[2], Genre.List[int.Parse(inputs[4])], inputs[3], releaseDate, starring);
                     Program.library.Add(newMovie);
                 }
                 catch (Exception)
@@ -84,7 +84,7 @@ namespace LibraryManager
      
                 try
                 {
-                    Program.library.Delete(new Movie(titleInput));
+                    Program.library.Delete(titleInput);
                 } catch(Exception)
                 {
                     Console.WriteLine($"Failed to delete movie [{titleInput}]. Please 0 to try again on enter 1 to return to Staff Menu.");
