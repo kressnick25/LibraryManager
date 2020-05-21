@@ -14,12 +14,20 @@ namespace LibraryManager
             this.memberMenu = memberMenu;
         }
 
+        /// <summary>
+        /// Display all the information about all the movie DVD's in alphabetical order of the current movie title.
+        /// </summary>
+        /// <returns>Member Menu</returns>
         public Menu DisplayAllMovies()
         {
-            Program.library.PrintMovies(true);
+            Program.library.PrintMovies();
             return memberMenu;
         }
 
+        /// <summary>
+        /// Borrow a movie DVD from the community library, given the title of the movie DVD
+        /// </summary>
+        /// <returns>Member Menu</returns>
         public Menu BorrowMovie()
         {
             while (true)
@@ -41,6 +49,10 @@ namespace LibraryManager
             return memberMenu;
         }
 
+        /// <summary>
+        /// Return a movie DVD to the community library, given the title of the movie DVD
+        /// </summary>
+        /// <returns>Member Menu</returns>
         public Menu ReturnMovie()
         {
             while (true)
@@ -62,6 +74,10 @@ namespace LibraryManager
             return memberMenu;
         }
 
+        /// <summary>
+        /// List current movie DVD's that are currently being held by the registerd member
+        /// </summary>
+        /// <returns>Member Menu</returns>
         public Menu ListOwnBorrowed()
         {
             Console.WriteLine($"ALL BORROWED ITEMS FOR USER {Program.currentUser.UserName}");
@@ -69,6 +85,11 @@ namespace LibraryManager
             return memberMenu;
         }
 
+        /// <summary>
+        /// Display the top 10 most frequently borrowed movie DVDs by the members in the
+        /// descending order of frequency.
+        /// </summary>
+        /// <returns></returns>
         public Menu ListMostPopular()
         {
             int libSize = Program.library.Count();
@@ -81,9 +102,10 @@ namespace LibraryManager
                 Movie[] m = Program.library.ToArray();
                 Algorithms.QuickSort(m, 0, m.Length - 1);
 
-                for (int i = 0; i < 10; i++)
+                // iterate through lenght of array or first 10 items, whichever smaller
+                for (int i = 0; i < Math.Min(10, m.Length); i++)
                 {
-                    Console.WriteLine($"{i}: {m[i].Title} borrowed {m[i].LoanedCount} times");
+                    Console.WriteLine($"{i + 1}: {m[i].Title} -- borrowed {m[i].LoanedCount} times");
                 }
             }
 

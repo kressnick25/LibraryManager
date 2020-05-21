@@ -39,7 +39,6 @@ namespace LibraryManagerTests
             Assert.AreEqual(d["address"], member.Address);
             Assert.AreEqual(d["phoneNumber"], member.PhoneNumber);
             Assert.AreEqual("Test Tester", member.Name);
-            Assert.AreEqual("Test Tester", member.Key);
             Assert.AreEqual("TesterTest", member.UserName);
         }
 

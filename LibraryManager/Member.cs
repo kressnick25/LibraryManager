@@ -19,12 +19,6 @@ namespace LibraryManager
         public string Address { get; }
         public string PhoneNumber { get; }
 
-        public string Key { 
-            get 
-            { 
-                return Name; 
-            } 
-        }
         public string Name
         {
             get
@@ -39,6 +33,8 @@ namespace LibraryManager
                 return $"{surname}{givenName}";
             } 
         }
+
+        // Default constructor
         public Member(string givenName, string surname, string address, string phoneNumber, string password)
         {
             this.givenName = givenName;
@@ -49,6 +45,10 @@ namespace LibraryManager
             this.Password = password;
         }
 
+        /// <summary>
+        ///  Alternate constructor using array of strings instead of parameters.
+        /// </summary>
+        /// <param name="details"></param>
         public Member(string[] details)
         {
             if (details.Length < 5)
@@ -63,6 +63,11 @@ namespace LibraryManager
             this.Password = details[4];
         }
 
+        /// <summary>
+        /// Add a new movie to the users Collection.
+        /// This should not be used externally, instead use the method Movie.LoanTo which calls this method.
+        /// </summary>
+        /// <param name="movie"></param>
         public void AddMovie(Movie movie)
         {
             if (currentLoans.Count() == 10)
@@ -80,23 +85,36 @@ namespace LibraryManager
             }
             catch(ArgumentException)
             {
-                throw new ArgumentException($"Movie with title [{movie.Title}] already on loan to this user [{Key}].");
+                throw new ArgumentException($"Movie with title [{movie.Title}] already on loan to this user [{Name}].");
             }
         }
 
+        /// <summary>
+        /// Get a Loaned movie from the members internal collection.
+        /// </summary>
+        /// <param name="title">The Title of the movie</param>
+        /// <returns></returns>
         public Movie GetMovie(string title)
         {
             return currentLoans.Get(title);
         }
         
 
-        // removes a movie from the Member
+        /// <summary>
+        /// Removes a movie from internal collection.
+        /// Not to be used externally except in unit tests.
+        /// Instead call ReturnMovieToLibrary method.
+        /// </summary>
+        /// <param name="title">Title of the movie</param>
         public void removeMovie(string title)
         {
             currentLoans.Delete(title);
         }
 
-        // Returns a Movie to the library by removing from Member
+        /// <summary>
+        /// Remove a movie from the members internal collection and set copy as available in the libary.
+        /// </summary>
+        /// <param name="title">Title of the movie to return</param>
         public void ReturnMovieToLibrary(string title)
         {
             Program.library.Get(title).LoanedTo = null;
@@ -104,16 +122,12 @@ namespace LibraryManager
             removeMovie(title);
         }
 
-        public void ReturnMovieToLibrary(Movie movie)
-        {
-            Program.library.Get(movie.Title).LoanedTo = null;
-            Program.library.Get(movie.Title).CoppiesAvailable++;
-            removeMovie(movie.Title);
-        }
-
+        /// <summary>
+        /// Print the details of all current movies loaned to the user. 
+        /// </summary>
         public void PrintLoans()
         {
-            currentLoans.PrintMovies(true);
+            currentLoans.PrintMovies();
         }
     }
 }

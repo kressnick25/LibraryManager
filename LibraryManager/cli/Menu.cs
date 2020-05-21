@@ -3,6 +3,7 @@ using System.ComponentModel;
 
 namespace LibraryManager
 {
+    // Defines a Menu interface
     public class Menu
     {
         const int HEADER_WIDTH = 40;
@@ -11,6 +12,7 @@ namespace LibraryManager
         private MenuItem goBack;
         private DataStructures.List<MenuItem> selections;
 
+        // Default contructor
         public Menu(string menuName, MenuItem previous)
         {
             this.MenuName = menuName;
@@ -23,6 +25,10 @@ namespace LibraryManager
             get { return selections.Length; } 
         }
 
+        /// <summary>
+        /// Add a Menu item as a child of this Menu
+        /// </summary>
+        /// <param name="menuItem">new menuitem to add</param>
         public void AddMenuItem(MenuItem menuItem)
         {
    
@@ -39,6 +45,10 @@ namespace LibraryManager
             }
         }
 
+        /// <summary>
+        /// Format the menu as a string as it would appear on screen.
+        /// </summary>
+        /// <returns>String of output</returns>
         public override string ToString()
         {
             // ===============Main Menu================
@@ -58,7 +68,11 @@ namespace LibraryManager
             return output;
         }
 
-        // Returns the next menu to go to after selection is given
+        /// <summary>
+        /// Handle input from the user, pass controll to child MenuItem,
+        /// which after handling functions, returns controll to this menu
+        /// </summary>
+        /// <returns>This or Parent menu</returns>
         public Menu HandleSelection()
         {
             // get input 

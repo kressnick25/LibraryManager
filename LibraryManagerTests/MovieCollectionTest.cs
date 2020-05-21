@@ -90,7 +90,7 @@ namespace LibraryManagerTests
             collection.Add(mov2);
             Assert.DoesNotThrow(() =>
             {
-                collection.PrintMovies(true);
+                collection.PrintMovies();
             });
         }
 

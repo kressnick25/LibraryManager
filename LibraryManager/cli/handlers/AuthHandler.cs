@@ -9,7 +9,10 @@ namespace LibraryManager
 {
     class AuthHandler
     {
-        private const string AUTH_FAILED_MSG = "Authentication failed.\nPress 0 to try again or 1 to return to the main menu.\n";
+        private const string AUTH_FAILED_MSG = "\nAuthentication failed.\nPress 0 to try again or 1 to return to the main menu.\n";
+        private const string STAFF_USERNAME = "staff";
+        private const string STAFF_PASSWORD = "today123";
+
         private Menu staffMenu;
         private Menu mainMenu;
         private Menu memberMenu;
@@ -21,6 +24,10 @@ namespace LibraryManager
             this.memberMenu = memberMenu;
         }
 
+        /// <summary>
+        /// Authenticate a staff user using the username "staff" and password "today123"
+        /// </summary>
+        /// <returns>Staff Menu</returns>
         public Menu StaffLoginHandler()
         {
             while (true)
@@ -51,6 +58,10 @@ namespace LibraryManager
 
         }
 
+        /// <summary>
+        /// Authenticate a library Member using the members username and 4-digit passcode
+        /// </summary>
+        /// <returns>Member Menu</returns>
         public Menu MemberLoginHandler()
         {
             MemberCollection members = Program.members;
@@ -69,7 +80,7 @@ namespace LibraryManager
                     user = members.FindUsername(username);
                 } catch (Exception)
                 {
-                    Console.WriteLine($"Authentication failed. Username [{username}] not found.\nPress 0 to try again or 1 to return to the main menu.\n");
+                    Console.WriteLine($"\nAuthentication failed. Username [{username}] not found.\nPress 0 to try again or 1 to return to the main menu.\n");
                     char input = Console.ReadKey(true).KeyChar;
                     if (input == '1')
                     {
@@ -95,10 +106,10 @@ namespace LibraryManager
             }
         }
 
-        private const string STAFF_USERNAME = "staff";
-        private const string STAFF_PASSWORD = "today123"; // hash of password defined in assignment spec
-
-        // Read line but does not show characters on screen for privacy/security
+        /// <summary>
+        ///  Read a line from the console but do not show characters on screen for privacy/security
+        /// </summary>
+        /// <returns>String containing user input</returns>
         private static string readObscuredPassword()
         {
             string output = null;
@@ -107,50 +118,19 @@ namespace LibraryManager
                 var key = Console.ReadKey(true);
                 if (key.Key == ConsoleKey.Enter)
                     break;
-                output += key.KeyChar;
+                if (key.Key == ConsoleKey.Backspace)
+                {
+                    if (output.Length != 0)
+                        // trim last char from output
+                        output = output.Remove(output.Length - 1);
+                }
+                else
+                {
+                    output += key.KeyChar;
+                }
             }
 
             return output;
-        }
-
-        //https://docs.microsoft.com/en-us/dotnet/api/system.security.cryptography.md5?view=netcore-3.1
-        public static string GetMd5Hash(MD5 hash, string input)
-        {
-            // Convert the input string to a byte array and compute the hash.
-            byte[] data = hash.ComputeHash(Encoding.UTF8.GetBytes(input));
-
-            // Create a new Stringbuilder to collect the bytes
-            // and create a string.
-            StringBuilder sBuilder = new StringBuilder();
-
-            // Loop through each byte of the hashed data
-            // and format each one as a hexadecimal string.
-            for (int i = 0; i < data.Length; i++)
-            {
-                sBuilder.Append(data[i].ToString("x2"));
-            }
-
-            // Return the hexadecimal string.
-            return sBuilder.ToString();
-        }
-
-        // Verify a hash against a string.
-        private static bool VerifyMd5Hash(MD5 md5Hash, string input, string hash)
-        {
-            // Hash the input.
-            string hashOfInput = GetMd5Hash(md5Hash, input);
-
-            // Create a StringComparer an compare the hashes.
-            StringComparer comparer = StringComparer.OrdinalIgnoreCase;
-
-            if (0 == comparer.Compare(hashOfInput, hash))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
         }
     }
 }

@@ -167,7 +167,7 @@ namespace LibraryManager
             root = null;
         }
 
-        public void PrintMovies(bool descending)
+        public void PrintMovies()
         {
             InOrderTraverse(root);
             Console.WriteLine();

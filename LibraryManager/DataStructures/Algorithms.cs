@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Http.Headers;
 using System.Text;
 
 namespace LibraryManager
@@ -36,10 +37,18 @@ namespace LibraryManager
             return 0;
         }
 
+
+        /// <summary>
+        /// Use quicksort algorithm to sort an array of Movies by title alphabetically
+        /// </summary>
+        /// <param name="movies">Array of movies, unsorted</param>
+        /// <param name="leftIndex"></param>
+        /// <param name="rightIndex"></param>
         public static void QuickSort(Movie[] movies, int leftIndex, int rightIndex)
         {
             if (leftIndex < rightIndex)
             {
+                // get pivot point
                 int pivot = Partition(movies, leftIndex, rightIndex);
 
                 if (pivot > 1)
@@ -51,30 +60,44 @@ namespace LibraryManager
                     QuickSort(movies, pivot + 1, rightIndex);
                 }
             }
+            // partition is sorted
         }
 
         private static int Partition(Movie[] movies, int leftIndex, int rightIndex)
         {
             int pivot = movies[leftIndex + (rightIndex - leftIndex) / 2].LoanedCount;
+            // Loop through partition, swapping elements, until sorted
             while (true)
             {
-
+                // move left index to next value less than pivot
                 while (movies[leftIndex].LoanedCount > pivot)
                 {
                     leftIndex++;
                 }
-
+                // move right index to next value greater than pivot
                 while (movies[rightIndex].LoanedCount < pivot)
                 {
                     rightIndex--;
                 }
 
+                if (leftIndex > rightIndex || 
+                    movies[leftIndex].LoanedCount == movies[rightIndex].LoanedCount)
+                {
+                    return rightIndex;
+                }
+                // swap the two elements
+                Movie temp = movies[leftIndex];
+                movies[leftIndex] = movies[rightIndex];
+                movies[rightIndex] = temp;
+
+                /*
                 if (leftIndex < rightIndex)
                 {
-                    if (Equals(movies[leftIndex].LoanedCount, movies[rightIndex].LoanedCount))
+                    if (movies[leftIndex].LoanedCount == movies[rightIndex].LoanedCount)
                     {
                         return rightIndex;
                     }
+                    // swap two elements
                     Movie temp = movies[leftIndex];
                     movies[leftIndex] = movies[rightIndex];
                     movies[rightIndex] = temp;
@@ -83,6 +106,7 @@ namespace LibraryManager
                 {
                     return rightIndex;
                 }
+                */
             }
         }
     }

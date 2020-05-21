@@ -17,6 +17,10 @@ namespace LibraryManager
             this.staffMenu = staffMenu;
         }
 
+        /// <summary>
+        /// Add DVDs of a new movie to the software application
+        /// </summary>
+        /// <returns>Staff Menu</returns>
         public Menu RegisterMovie()
         {
             while (true)
@@ -75,6 +79,10 @@ namespace LibraryManager
             return staffMenu;
         }
 
+        /// <summary>
+        /// Remove a movie DVD from the software application
+        /// </summary>
+        /// <returns>Staff Menu</returns>
         public Menu UnRegisterMovie()
         {
             while (true)
@@ -96,6 +104,10 @@ namespace LibraryManager
             return staffMenu;
         }
 
+        /// <summary>
+        /// Register a memeber with the software application.
+        /// </summary>
+        /// <returns>Staff Menu</returns>
         public Menu RegisterMember()
         {
             while (true) {
@@ -129,6 +141,10 @@ namespace LibraryManager
             return staffMenu;
         }
 
+        /// <summary>
+        /// Find a member's contact phone number, given the member's full name
+        /// </summary>
+        /// <returns>Staff Menu</returns>
         public Menu FindMember()
         {
             while(true)

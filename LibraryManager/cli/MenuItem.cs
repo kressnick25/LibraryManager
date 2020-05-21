@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 namespace LibraryManager
@@ -10,7 +11,7 @@ namespace LibraryManager
         public int Index { get; }
         public string Text { get; }
 
-        // TODO next might need to be a ref
+        // Default contstructor
         public MenuItem(int index, string text, Func<Menu> nextInterface)
         {
             this.Index = index;
@@ -18,6 +19,7 @@ namespace LibraryManager
             this.next = nextInterface;
         }
 
+        // Execute the next Menu interface
         public Menu NextInterface()
         {
             return next();
