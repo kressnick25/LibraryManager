@@ -92,7 +92,6 @@ namespace LibraryManager
         /// <returns></returns>
         public Menu ListMostPopular()
         {
-            int libSize = Program.library.Count();
             if (Program.library.Count() == 0)
             {
                 Console.WriteLine("No movies currently in Library.");
