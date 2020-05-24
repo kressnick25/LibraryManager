@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace LibraryManager
 {
@@ -19,6 +18,7 @@ namespace LibraryManager
         public int LoanedCount { get; set; }
         public int CoppiesAvailable { get; set; }
 
+        // Default constructor
         public Movie(string title, string directorName,
                         string genre, string classification, DateTime releaseDate, params string[] starring)
         {
@@ -36,21 +36,21 @@ namespace LibraryManager
             CoppiesAvailable = 1;
         }
 
-        public Movie(string title)
-        {
-            this.Title = title;
-        }
-
-        public string Key
-        {
-            get { return Title; }
-        }
 
         public bool IsOnLoan
         {
             get { return LoanedTo != null; }
         }
 
+        public string Starring
+        {
+            get { return starring.ToString(); }
+        }
+
+        /// <summary>
+        /// Assign an instance of this Movie to a Member
+        /// </summary>
+        /// <param name="member">Member to loan this Movie to</param>
         public void LoanTo(Member member)
         {
             if (CoppiesAvailable <= 0)
@@ -63,22 +63,17 @@ namespace LibraryManager
             CoppiesAvailable--;
         }
 
-        public int CompareTo(object o)
-        {
-            Movie movie = (Movie)o;
-            return Algorithms.StringCompare(this.Title, movie.Title);
-        }
-
-        public string Starring
-        {
-            get { return starring.ToString(); }
-        }
-
+        /// <summary>
+        /// Return a string with all the Movies formatted information.
+        /// </summary>
         public override string ToString()
         {
             return $"{Title} ({ReleaseDate.Year}) DIRECTED BY: {Director}, STARRING: {Starring} {Genre} [{Classification}]\n";
         }
 
+        /// <summary>
+        /// Possible Classifications for a Movie
+        /// </summary>
         public static Dictionary<string, string> ClassificationEnum = new Dictionary<string, string>
         {
             {"G", "General" },
@@ -86,12 +81,29 @@ namespace LibraryManager
             {"M", "Mature"},
             {"MA", "Mature Accompanied" },
         };
+
+        public int CompareTo(object o)
+        {
+            Movie movie = (Movie)o;
+            return Algorithms.StringCompare(this.Title, movie.Title);
+        }
     }
 
+    /// <summary>
+    /// Possible Genre's for a Movie
+    /// Similar to an enum but with extended functionality.
+    /// </summary>
     public class Genre
     {
+        /// <summary>
+        /// List of genre strings
+        /// </summary>
         public static string[] List = new string[] { "Action", "Adventure", "Animated", "Comedy", "Drama", "Family", "Other", "Science Fiction", "Thriller"};
 
+        /// <summary>
+        /// Formats the possible Genres for selection by Staff members
+        /// </summary>
+        /// <returns>String with corrspoding index before each genre</returns>
         public static string SelectionList()
         {
             string output = "";
