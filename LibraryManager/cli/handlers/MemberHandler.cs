@@ -1,8 +1,5 @@
 ﻿using LibraryManager.cli.handlers;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Text.RegularExpressions;
 
 namespace LibraryManager
 {
