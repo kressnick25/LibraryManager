@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Security.Cryptography;
-using BSTreeClass;
-using System.Diagnostics.CodeAnalysis;
 
 namespace LibraryManager
 {
     /*
      * Models a library member
      */
-    public class Member : WithKey
+    public class Member
     {
         private MovieCollection currentLoans;
         private string givenName;
