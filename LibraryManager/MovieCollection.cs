@@ -3,21 +3,34 @@ using System.Collections.Generic;
 
 namespace LibraryManager
 {
+    // Represents a collection of movie DVD's store Movie objects
     public class MovieCollection
     {
         private TreeNode root;
 
+        // Default contructor
         public MovieCollection()
         {
             root = null;
         }
 
+        /// <summary>
+        /// Return a Movie stored in this collection
+        /// </summary>
+        /// <param name="title">Title of the Movie</param>
+        /// <returns>Movie object that matches title parameter</returns>
         public Movie Get(string title)
         {
-            return get(title, root);
+            return Get(title, root);
         }
 
-        private Movie get(string title, TreeNode n)
+        /// <summary>
+        /// Recursively traverse the Binary Search Tree to find a Movie with a matching title string.
+        /// </summary>
+        /// <param name="title">Title of the Movie</param>
+        /// <param name="n">Current TreeNode to compare</param>
+        /// <returns>Movie with matching title or throws KeyNotFound Exception</returns>
+        private Movie Get(string title, TreeNode n)
         {
             if (n == null)
                 throw new KeyNotFoundException($"Movie with title [{title}] is already on loan or does not exist");
@@ -25,36 +38,21 @@ namespace LibraryManager
                 return n.Data;
             else
                 if (Algorithms.StringCompare(title, n.Data.Title) < 0)
-                return get(title, n.Left);
+                return Get(title, n.Left);
             else
-                return get(title, n.Right);
+                return Get(title, n.Right);
         }
 
-        //public Movie Get(string title)
-        //{
-        //    return get(title, root);
-        //}
-
-        //private Movie get(string title, TreeNode n)
-        //{
-        //    if (n == null)
-        //        throw new KeyNotFoundException($"Movie with title [{title}] does not exist");
-
-        //    if (Algorithms.StringCompare(title, n.Data.Title) == 0)
-        //        return n.Data;
-        //    else
-        //        if (Algorithms.StringCompare(title, n.Data.Title) < 0)
-        //        return get(title, n.Left);
-        //    else
-        //        return get(title, n.Right);
-
-        //}
-
+        /// <summary>
+        /// Check if a Movie exists in this collection
+        /// </summary>
+        /// <param name="title">Title of the movie</param>
+        /// <returns>True if the Movie is found, else false</returns>
         public bool Exists(string title)
         {
             try
             {
-                get(title, root);
+                Get(title, root);
                 return true;
             }catch
             {
@@ -62,6 +60,11 @@ namespace LibraryManager
             }
         }
 
+        /// <summary>
+        /// Add a new Movie to this collection.
+        /// If an existing Movie is found with the same title, a copy is added to the existing movie.
+        /// </summary>
+        /// <param name="movie">A Movie object</param>
         public void Add(Movie movie)
         {
             if (root == null)
@@ -76,29 +79,38 @@ namespace LibraryManager
                     Get(movie.Title).CoppiesAvailable++;
                 }else
                 {
-                    add(movie, root);
+                    Add(movie, root);
                 }
             }
         }
 
-        private void add(Movie movie, TreeNode n)
+        /// <summary>
+        /// Recursively traverse the BST to insert a new Movie at the correct position
+        /// </summary>
+        /// <param name="movie">Movie object to insert</param>
+        /// <param name="n">Current TreeNode</param>
+        private void Add(Movie movie, TreeNode n)
         {
             if (Algorithms.StringCompare(movie.Title, n.Data.Title) < 0)
             {
                 if (n.Left == null)
                     n.Left = new TreeNode(movie);
                 else
-                    add(movie, n.Left);
+                    Add(movie, n.Left);
             }
             else
             {
                 if (n.Right == null)
                     n.Right = new TreeNode(movie);
                 else
-                    add(movie, n.Right);
+                    Add(movie, n.Right);
             }
         }
 
+        /// <summary>
+        /// Remove a Movie object from this collection.
+        /// </summary>
+        /// <param name="title">Title string of the Movie to be removed</param>
         public void Delete(string title)
         {
             TreeNode n = root;
@@ -156,17 +168,27 @@ namespace LibraryManager
             }
         }
 
+        /// <summary>
+        /// Delete this collection entirely.
+        /// </summary>
         public void Clear()
         {
             root = null;
         }
 
+        /// <summary>
+        /// Print all Movies currently in this collection.
+        /// </summary>
         public void PrintMovies()
         {
             InOrderTraverse(root);
             Console.WriteLine();
         }
 
+        /// <summary>
+        /// Recursively traverse the BST and print each Movie.
+        /// </summary>
+        /// <param name="n">The current TreeNode</param>
         private void InOrderTraverse(TreeNode n)
         {
             if (n != null)
@@ -176,7 +198,11 @@ namespace LibraryManager
                 InOrderTraverse(n.Right);
             }
         }
-
+    
+        /// <summary>
+        /// Get the number of Movies currently in this collection.
+        /// </summary>
+        /// <returns>Number of Movies currently in this collection.</returns>
         public int Count()
         {
             int count = 0;
@@ -184,6 +210,12 @@ namespace LibraryManager
                 count = Count(root);
             return count;
         }
+
+        /// <summary>
+        /// Recursively traverse the BST to count all existing Movies
+        /// </summary>
+        /// <param name="node">The current TreeNode</param>
+        /// <returns>The number of objects currently in the BST</returns>
         private int Count(TreeNode node)
         {
             int count = 1;
@@ -194,6 +226,10 @@ namespace LibraryManager
             return count;
         }
 
+        /// <summary>
+        /// Flatten the BST to an array of Movies
+        /// </summary>
+        /// <returns>A Movie Array containing all the Movies in the BST, sorted alphabetically</returns>
         public Movie[] ToArray()
         {
             DataStructures.List<Movie> L = new DataStructures.List<Movie>();
@@ -202,6 +238,11 @@ namespace LibraryManager
             return L.ToArray();
         }
 
+        /// <summary>
+        ///  Recursively traverse the BST, adding each object to the passed list
+        /// </summary>
+        /// <param name="n">The current TreeNode</param>
+        /// <param name="list">Reference to the List to add the Movies to</param>
         private void ArrayTraverse(TreeNode n, ref DataStructures.List<Movie> list)
         {
             if (n != null)
@@ -213,11 +254,14 @@ namespace LibraryManager
         }
     }
 
+    // Represents a Node in a Binary Search Tree
     public class TreeNode
     {
         public Movie Data { get; set; }
         public TreeNode Left { get; set; }
         public TreeNode Right { get; set; }
+        
+        // Default constructor
         public TreeNode(Movie movie)
         {
             Data = movie;

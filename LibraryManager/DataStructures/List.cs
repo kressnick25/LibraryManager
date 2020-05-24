@@ -1,17 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.Design;
-using System.Text;
-using System.Threading;
 
 namespace LibraryManager.DataStructures
 {
     /*
-     * Represents a collection of registered members.
-     * Stores values as a sorted array interally and
-     * iterates using binary search.
+     * Represents a collection of registered members. Essentally a resizeable array.
      */
     public class List<T> : IEnumerable<T>
     {
