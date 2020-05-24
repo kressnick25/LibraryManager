@@ -51,10 +51,8 @@ namespace LibraryManagerTests
         [Test]
         public void LoanTo()
         {
-            Assert.False(mov.IsOnLoan);
             mov.LoanTo(m1);
             Assert.AreEqual(mov.LoanedTo, m1);
-            Assert.True(mov.IsOnLoan);
         }
 
         [Test]

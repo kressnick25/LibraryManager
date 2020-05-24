@@ -194,7 +194,7 @@ namespace LibraryManager
             if (n != null)
             {
                 InOrderTraverse(n.Left);
-                Console.Write(n.Data);
+                Console.Write(n.Data.ToString(true));
                 InOrderTraverse(n.Right);
             }
         }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace LibraryManager
 {
@@ -36,12 +37,6 @@ namespace LibraryManager
             CoppiesAvailable = 1;
         }
 
-
-        public bool IsOnLoan
-        {
-            get { return LoanedTo != null; }
-        }
-
         public string Starring
         {
             get { return starring.ToString(); }
@@ -68,7 +63,19 @@ namespace LibraryManager
         /// </summary>
         public override string ToString()
         {
-            return $"{Title} ({ReleaseDate.Year}) DIRECTED BY: {Director}, STARRING: {Starring} {Genre} [{Classification}]\n";
+            return $"{Title} ({ReleaseDate.Year}) DIRECTED BY: {Director}, STARRING: {Starring} GENRE: {Genre} [{Classification}]\n";
+        }
+
+        public string ToString(bool withCopies)
+        {
+            if (withCopies)
+            {
+                return $"{CoppiesAvailable} x {Title} ({ReleaseDate.Year}) DIRECTED BY: {Director}, STARRING: {Starring} GENRE: {Genre} [{Classification}]\n";
+            }
+            else
+            {
+                return this.ToString();
+            }
         }
 
         /// <summary>
