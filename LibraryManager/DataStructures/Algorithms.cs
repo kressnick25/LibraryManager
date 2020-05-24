@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LibraryManager.cli.handlers;
+using System;
 using System.Collections.Generic;
 using System.Net.Http.Headers;
 using System.Text;
@@ -49,23 +50,25 @@ namespace LibraryManager
             if (leftIndex < rightIndex)
             {
                 // get pivot point
-                int pivot = Partition(movies, leftIndex, rightIndex);
+                int split = Partition(movies, leftIndex, rightIndex);
 
-                if (pivot > 1)
+                if (split > 1)
                 {
-                    QuickSort(movies, leftIndex, pivot - 1);
+                    QuickSort(movies, leftIndex, split - 1);
                 }
-                if (pivot + 1 < rightIndex)
+                if (split + 1 < rightIndex)
                 {
-                    QuickSort(movies, pivot + 1, rightIndex);
+                    QuickSort(movies, split + 1, rightIndex);
                 }
             }
             // partition is sorted
         }
-
+ 
         private static int Partition(Movie[] movies, int leftIndex, int rightIndex)
         {
-            int pivot = movies[leftIndex + (rightIndex - leftIndex) / 2].LoanedCount;
+            
+            int middleIndex = (int)Math.Round((double)((rightIndex - leftIndex)/2), 0);
+            int pivot = movies[leftIndex + middleIndex].LoanedCount;
             // Loop through partition, swapping elements, until sorted
             while (true)
             {
@@ -79,7 +82,6 @@ namespace LibraryManager
                 {
                     rightIndex--;
                 }
-
                 if (leftIndex > rightIndex || 
                     movies[leftIndex].LoanedCount == movies[rightIndex].LoanedCount)
                 {
@@ -88,25 +90,7 @@ namespace LibraryManager
                 // swap the two elements
                 Movie temp = movies[leftIndex];
                 movies[leftIndex] = movies[rightIndex];
-                movies[rightIndex] = temp;
-
-                /*
-                if (leftIndex < rightIndex)
-                {
-                    if (movies[leftIndex].LoanedCount == movies[rightIndex].LoanedCount)
-                    {
-                        return rightIndex;
-                    }
-                    // swap two elements
-                    Movie temp = movies[leftIndex];
-                    movies[leftIndex] = movies[rightIndex];
-                    movies[rightIndex] = temp;
-                }
-                else
-                {
-                    return rightIndex;
-                }
-                */
+                movies[rightIndex] = temp;               
             }
         }
     }
