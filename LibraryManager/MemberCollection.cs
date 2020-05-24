@@ -8,8 +8,6 @@ namespace LibraryManager
     public class MemberCollection
     {
         private Member[] members;
-
-        // size of list
         public int Length { get; private set; }
 
         public MemberCollection()
@@ -18,11 +16,9 @@ namespace LibraryManager
             Length = 0;
         }
 
-        // TODO check this works
-        // increase size
-        private void increaseSize()
+        
+        private void IncreaseSize()
         {
-            //Array.Resize<Member>(ref members, this.Length + 10);
             Member[] resizedArray = new Member[this.Length + 10];
             for (int i = 0; i < Length; i++)
             {
@@ -31,15 +27,18 @@ namespace LibraryManager
             members = resizedArray;
         }
 
-        // Sort array on insert, dont need to batch insert.
-        // allows us to find members more efficiently
+        /// <summary>
+        /// Add a new Member to the List.
+        /// Performs sort on insert function so that List remains sorted internally.
+        /// </summary>
+        /// <param name="newMember">new Member</param>
         public void Add(Member newMember)
         {
             if (indexOf(newMember.Name) != -1)
                 throw new KeyNotFoundException($"User with name [{newMember}] already in collection");
             if (members.Length - Length <= 5)
             {
-                this.increaseSize();
+                this.IncreaseSize();
             }
             // insert at last position
             members[Length++] = newMember;
@@ -51,13 +50,17 @@ namespace LibraryManager
                 while (j >= 0 && Algorithms.StringCompare(members[j].Name, newMember.Name) == -1)
                 {
                     members[j + 1] = members[j];
-                    j = j - 1;
+                    j--;
                 }
                 members[j + 1] = v;
             }
         }
 
-        // get a member by name
+        /// <summary>
+        /// Find a Member using the Member's full name
+        /// </summary>
+        /// <param name="fullName">Member's full name ie. "Jane Doe"</param>
+        /// <returns>The corresponding Member object that matches the username</returns>
         public Member Find(string fullName)
         {
             int i = indexOf(fullName);
@@ -67,6 +70,11 @@ namespace LibraryManager
                 return members[i];
         }
 
+        /// <summary>
+        /// Find a Member using the Member's username
+        /// </summary>
+        /// <param name="userName">Member's username string ie. "DoeJane"</param>
+        /// <returns>The corresponding Member object that matches the username</returns>
         public Member FindUsername(string userName)
         {
             for (int i = 0; i < Length; i++)
@@ -78,7 +86,13 @@ namespace LibraryManager
             }
             throw new KeyNotFoundException($"User with name [{userName}] was not found in collection.");
         }
-        // index of member
+        
+        /// <summary>
+        /// Get the index in the array of a Member using the members fullname string.
+        /// Uses binary search to achieve average time complexity of O(log n)
+        /// </summary>
+        /// <param name="fullName">Full name of Member</param>
+        /// <returns>Number of the matching members index in the interanal array</returns>
         private int indexOf(string fullName)
         {
             // use binary search to find index of member with matching fullName (Levitin)
@@ -95,12 +109,6 @@ namespace LibraryManager
                     l = m + 1;
             }
             return -1;
-        }
-
-        public void Remove(string fullName)
-        {
-            // Assignment spec does not require the ability to remove members
-            throw new NotImplementedException();
         }
     }
 }
