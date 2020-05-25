@@ -17,7 +17,9 @@ namespace LibraryManager
         /// <returns>Member Menu</returns>
         public Menu DisplayAllMovies()
         {
-            Program.library.PrintMovies();
+            Program.library.PrintMovies(true);
+            InputHandler.AwaitContinue();
+
             return memberMenu;
         }
 
@@ -68,6 +70,7 @@ namespace LibraryManager
                 }
                 break;
             }
+
             return memberMenu;
         }
 
@@ -79,6 +82,8 @@ namespace LibraryManager
         {
             Console.WriteLine($"ALL BORROWED ITEMS FOR USER {Program.currentUser.UserName}");
             Program.currentUser.PrintLoans();
+            InputHandler.AwaitContinue();
+
             return memberMenu;
         }
 
@@ -104,7 +109,8 @@ namespace LibraryManager
                     Console.WriteLine($"{i + 1}: {m[i].Title} -- borrowed {m[i].LoanedCount} times");
                 }
             }
-
+            InputHandler.AwaitContinue();
+            
             return memberMenu;
         }
 

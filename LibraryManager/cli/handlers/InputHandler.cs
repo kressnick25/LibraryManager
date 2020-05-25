@@ -34,5 +34,12 @@ namespace LibraryManager.cli.handlers
             string input = Console.ReadLine();
             return input;
         }
+
+        // Hold current screen, await user any input to move forward
+        public static void AwaitContinue()
+        {
+            Console.Write("\nPress any key to continue...");
+            Console.ReadKey(true);
+        }
     }
 }

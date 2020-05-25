@@ -151,6 +151,8 @@ namespace LibraryManager
                         break;
                     Member member = Program.members.Find(input);
                     Console.WriteLine($"Member with name '{input}', phone number: {member.PhoneNumber}");
+                    InputHandler.AwaitContinue();
+
                     break;
                 }
                 catch (Exception)
@@ -159,7 +161,6 @@ namespace LibraryManager
                                         "\nPlease try again or enter 0 to return to Menu.");
                 }
             }
-           
 
             return staffMenu;
         }

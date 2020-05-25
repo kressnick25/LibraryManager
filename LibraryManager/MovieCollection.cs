@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.CompilerServices;
+using System;
 using System.Collections.Generic;
 
 namespace LibraryManager
@@ -185,6 +186,12 @@ namespace LibraryManager
             Console.WriteLine();
         }
 
+        public void PrintMovies(bool withCopies)
+        {
+            InOrderTraverse(root, true);
+            Console.WriteLine();
+        }
+
         /// <summary>
         /// Recursively traverse the BST and print each Movie.
         /// </summary>
@@ -194,11 +201,25 @@ namespace LibraryManager
             if (n != null)
             {
                 InOrderTraverse(n.Left);
-                Console.Write(n.Data.ToString(true));
+                Console.Write(n.Data);
                 InOrderTraverse(n.Right);
             }
         }
-    
+
+        /// <summary>
+        /// Recursively traverse the BST and print each Movie with number of copies
+        /// </summary>
+        /// <param name="n">The current TreeNode</param>
+        private void InOrderTraverse(TreeNode n, bool withCopies)
+        {
+            if (n != null)
+            {
+                InOrderTraverse(n.Left, true);
+                Console.Write(n.Data.ToString(true));
+                InOrderTraverse(n.Right, true);
+            }
+        }
+
         /// <summary>
         /// Get the number of Movies currently in this collection.
         /// </summary>
