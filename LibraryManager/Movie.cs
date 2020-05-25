@@ -92,7 +92,7 @@ namespace LibraryManager
         public int CompareTo(object o)
         {
             Movie movie = (Movie)o;
-            return Algorithms.StringCompare(this.Title, movie.Title);
+            return this.Title.CompareTo(movie.Title);
         }
     }
 

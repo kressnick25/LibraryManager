@@ -94,6 +94,7 @@ namespace LibraryManager
         /// <returns></returns>
         public Menu ListMostPopular()
         {
+            int test = Program.library.Count();
             if (Program.library.Count() == 0)
             {
                 Console.WriteLine("No movies currently in Library.");
@@ -101,7 +102,7 @@ namespace LibraryManager
             else
             {
                 Movie[] m = Program.library.ToArray();
-                Algorithms.QuickSort(m, 0, m.Length - 1);
+                Sort.QuickSort(m, 0, m.Length - 1);
 
                 // iterate through lenght of array or first 10 items, whichever smaller
                 for (int i = 0; i < Math.Min(10, m.Length); i++)

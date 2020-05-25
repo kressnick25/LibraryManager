@@ -47,7 +47,7 @@ namespace LibraryManager
             {
                 Member v = members[i];
                 int j = i - 1;
-                while (j >= 0 && Algorithms.StringCompare(members[j].Name, newMember.Name) == -1)
+                while (j >= 0 && members[j].Name.CompareTo(newMember.Name) == -1)
                 {
                     members[j + 1] = members[j];
                     j--;
@@ -103,7 +103,7 @@ namespace LibraryManager
                 int m = Math.Abs((l + r) / 2);
                 if (fullName == members[m].Name)
                     return m;
-                else if (Algorithms.StringCompare(fullName, members[m].Name) == -1)
+                else if (fullName.CompareTo(members[m].Name) == -1)
                     r = m - 1;
                 else
                     l = m + 1;

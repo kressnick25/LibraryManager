@@ -35,10 +35,10 @@ namespace LibraryManager
         {
             if (n == null)
                 throw new KeyNotFoundException($"Movie with title [{title}] is already on loan or does not exist");
-            if (Algorithms.StringCompare(title, n.Data.Title) == 0)
+            if (title.CompareTo(n.Data.Title) == 0)
                 return n.Data;
             else
-                if (Algorithms.StringCompare(title, n.Data.Title) < 0)
+                if (title.CompareTo(n.Data.Title) < 0)
                 return Get(title, n.Left);
             else
                 return Get(title, n.Right);
@@ -92,7 +92,7 @@ namespace LibraryManager
         /// <param name="n">Current TreeNode</param>
         private void Add(Movie movie, TreeNode n)
         {
-            if (Algorithms.StringCompare(movie.Title, n.Data.Title) < 0)
+            if (movie.Title.CompareTo(n.Data.Title) < 0)
             {
                 if (n.Left == null)
                     n.Left = new TreeNode(movie);
@@ -116,10 +116,10 @@ namespace LibraryManager
         {
             TreeNode n = root;
             TreeNode parent = null;
-            while (n != null && Algorithms.StringCompare(title, n.Data.Title) != 0)
+            while (n != null && title.CompareTo(n.Data.Title) != 0)
             {
                 parent = n;
-                if (Algorithms.StringCompare(title, n.Data.Title) < 0)
+                if (title.CompareTo(n.Data.Title) < 0)
                     n = n.Left;
                 else
                     n = n.Right;
