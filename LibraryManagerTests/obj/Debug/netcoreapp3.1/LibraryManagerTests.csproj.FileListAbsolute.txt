@@ -1,14 +1,9 @@
-C:\Users\nkress\source\repos\LibraryManager\LibraryManagerTests\bin\Debug\netcoreapp3.1\NUnit3.TestAdapter.dll
-C:\Users\nkress\source\repos\LibraryManager\LibraryManagerTests\bin\Debug\netcoreapp3.1\NUnit3.TestAdapter.pdb
-C:\Users\nkress\source\repos\LibraryManager\LibraryManagerTests\bin\Debug\netcoreapp3.1\nunit.engine.dll
-C:\Users\nkress\source\repos\LibraryManager\LibraryManagerTests\bin\Debug\netcoreapp3.1\nunit.engine.api.dll
 C:\Users\nkress\source\repos\LibraryManager\LibraryManagerTests\bin\Debug\netcoreapp3.1\LibraryManagerTests.deps.json
 C:\Users\nkress\source\repos\LibraryManager\LibraryManagerTests\bin\Debug\netcoreapp3.1\LibraryManagerTests.runtimeconfig.json
 C:\Users\nkress\source\repos\LibraryManager\LibraryManagerTests\bin\Debug\netcoreapp3.1\LibraryManagerTests.runtimeconfig.dev.json
 C:\Users\nkress\source\repos\LibraryManager\LibraryManagerTests\bin\Debug\netcoreapp3.1\LibraryManagerTests.dll
 C:\Users\nkress\source\repos\LibraryManager\LibraryManagerTests\bin\Debug\netcoreapp3.1\LibraryManagerTests.pdb
 C:\Users\nkress\source\repos\LibraryManager\LibraryManagerTests\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.CodeCoverage.Shim.dll
-C:\Users\nkress\source\repos\LibraryManager\LibraryManagerTests\bin\Debug\netcoreapp3.1\Microsoft.DotNet.InternalAbstractions.dll
 C:\Users\nkress\source\repos\LibraryManager\LibraryManagerTests\bin\Debug\netcoreapp3.1\Microsoft.TestPlatform.CoreUtilities.dll
 C:\Users\nkress\source\repos\LibraryManager\LibraryManagerTests\bin\Debug\netcoreapp3.1\Microsoft.TestPlatform.PlatformAbstractions.dll
 C:\Users\nkress\source\repos\LibraryManager\LibraryManagerTests\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.TestPlatform.ObjectModel.dll
@@ -19,8 +14,6 @@ C:\Users\nkress\source\repos\LibraryManager\LibraryManagerTests\bin\Debug\netcor
 C:\Users\nkress\source\repos\LibraryManager\LibraryManagerTests\bin\Debug\netcoreapp3.1\testhost.dll
 C:\Users\nkress\source\repos\LibraryManager\LibraryManagerTests\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
 C:\Users\nkress\source\repos\LibraryManager\LibraryManagerTests\bin\Debug\netcoreapp3.1\NuGet.Frameworks.dll
-C:\Users\nkress\source\repos\LibraryManager\LibraryManagerTests\bin\Debug\netcoreapp3.1\nunit.framework.dll
-C:\Users\nkress\source\repos\LibraryManager\LibraryManagerTests\bin\Debug\netcoreapp3.1\System.Xml.XPath.XmlDocument.dll
 C:\Users\nkress\source\repos\LibraryManager\LibraryManagerTests\bin\Debug\netcoreapp3.1\cs\Microsoft.TestPlatform.CoreUtilities.resources.dll
 C:\Users\nkress\source\repos\LibraryManager\LibraryManagerTests\bin\Debug\netcoreapp3.1\cs\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
 C:\Users\nkress\source\repos\LibraryManager\LibraryManagerTests\bin\Debug\netcoreapp3.1\de\Microsoft.TestPlatform.CoreUtilities.resources.dll
@@ -87,7 +80,6 @@ C:\Users\nkress\source\repos\LibraryManager\LibraryManagerTests\bin\Debug\netcor
 C:\Users\nkress\source\repos\LibraryManager\LibraryManagerTests\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
 C:\Users\nkress\source\repos\LibraryManager\LibraryManagerTests\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
 C:\Users\nkress\source\repos\LibraryManager\LibraryManagerTests\obj\Debug\netcoreapp3.1\LibraryManagerTests.csprojAssemblyReference.cache
-C:\Users\nkress\source\repos\LibraryManager\LibraryManagerTests\obj\Debug\netcoreapp3.1\LibraryManagerTests.csproj.CoreCompileInputs.cache
 C:\Users\nkress\source\repos\LibraryManager\LibraryManagerTests\obj\Debug\netcoreapp3.1\LibraryManagerTests.AssemblyInfoInputs.cache
 C:\Users\nkress\source\repos\LibraryManager\LibraryManagerTests\obj\Debug\netcoreapp3.1\LibraryManagerTests.AssemblyInfo.cs
 C:\Users\nkress\source\repos\LibraryManager\LibraryManagerTests\obj\Debug\netcoreapp3.1\LibraryManagerTests.csproj.CopyComplete
@@ -97,3 +89,5 @@ C:\Users\nkress\source\repos\LibraryManager\LibraryManagerTests\obj\Debug\netcor
 C:\Users\nkress\source\repos\LibraryManager\LibraryManagerTests\bin\Debug\netcoreapp3.1\LibraryManager.exe
 C:\Users\nkress\source\repos\LibraryManager\LibraryManagerTests\bin\Debug\netcoreapp3.1\LibraryManager.dll
 C:\Users\nkress\source\repos\LibraryManager\LibraryManagerTests\bin\Debug\netcoreapp3.1\LibraryManager.pdb
+C:\Users\nkress\source\repos\LibraryManager\LibraryManagerTests\bin\Debug\netcoreapp3.1\nunit.framework.dll
+C:\Users\nkress\source\repos\LibraryManager\LibraryManagerTests\obj\Debug\netcoreapp3.1\LibraryManagerTests.csproj.CoreCompileInputs.cache

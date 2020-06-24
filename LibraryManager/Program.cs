@@ -1,11 +1,12 @@
 ﻿using System;
+using System.ComponentModel;
 
 namespace LibraryManager
 {
     class Program
     {
         // set to true to start program with some movies and users pre-initialised
-        const bool PRE_SEED = true; 
+        const bool PRE_SEED = false; 
         static Menu ExitProgram()
         {
             Environment.Exit(0);
